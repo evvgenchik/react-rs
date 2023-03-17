@@ -1,0 +1,12 @@
+.list {
+  margin-top: 20rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30rem;
+}
+
+.title {
+  margin-top: 20rem;
+  text-align: center;
+  font-size: 34rem;
+}
