@@ -1,14 +1,13 @@
 import { NavLink } from 'react-router-dom';
+import styles from './header.module.scss';
 
 function Menu() {
   return (
-    <nav>
+    <nav className={styles.header__nav}>
       <NavLink to="." end>
-        Home
+        Catalog
       </NavLink>
-      <NavLink to="about">About</NavLink>
-      <NavLink to="contacts">Contacts</NavLink>
-      <NavLink to="courses">Courses</NavLink>
+      <NavLink to="about">About Us</NavLink>
     </nav>
   );
 }

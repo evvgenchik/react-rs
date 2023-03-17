@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 100rem;
+}
+
+.logo {
+  width: 60rem;
+  height: 60rem;
+
+  & img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.search {
+  width: 400rem;
+  height: 50rem;
+  border-radius: 20rem;
+  font-size: 20rem;
+  padding-left: 10rem;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: center;
+  gap: 20rem;
+  font-size: 21rem;
+
+  & a:hover {
+    color: #112d49;
+    text-decoration: underline;
+  }
+}

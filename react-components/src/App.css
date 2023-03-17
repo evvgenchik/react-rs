@@ -1,0 +1,16 @@
+html {
+  font-size: 1px;
+}
+
+body {
+  font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  color: #2c293b;
+}
+
+.container {
+  max-width: 986px;
+  margin: 0 auto;
+  font-size: 16rem;
+  padding: 10rem;
+}
