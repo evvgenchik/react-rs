@@ -18,3 +18,9 @@ body {
 .active {
   text-decoration: underline;
 }
+
+@media (max-width: 620px) {
+  html {
+    font-size: 0.8px;
+  }
+}

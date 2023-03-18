@@ -2,7 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 100rem;
+  gap: 10rem;
+  margin-bottom: 20rem;
 }
 
 .logo {
@@ -15,12 +16,10 @@
   }
 }
 
-.search {
-  width: 400rem;
-  height: 50rem;
-  border-radius: 20rem;
-  font-size: 20rem;
-  padding-left: 10rem;
+.title {
+  margin-top: 20rem;
+  text-align: center;
+  font-size: 34rem;
 }
 
 .header__nav {
@@ -32,5 +31,11 @@
   & a:hover {
     color: #112d49;
     text-decoration: underline;
+  }
+}
+
+@media (max-width:620px) {
+  .title {
+    font-size: 26rem;
   }
 }

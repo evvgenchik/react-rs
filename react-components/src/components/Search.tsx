@@ -1,5 +1,5 @@
 import { ChangeEvent, Component, FormEvent } from 'react';
-import styles from './header.module.scss';
+import styles from './catalog.module.scss';
 import { MyState } from '../utils/types';
 
 class Search extends Component<object, MyState> {
@@ -10,7 +10,7 @@ class Search extends Component<object, MyState> {
     this.inputValue = localStorage.getItem('search') || '';
     this.state = { value: this.inputValue };
     this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillUnmount() {
@@ -23,19 +23,19 @@ class Search extends Component<object, MyState> {
     this.setState({ value });
   }
 
-  // handleSubmit(event: FormEvent) {
-  //   event.preventDefault();
-  //   const { value } = this.state;
-  //   localStorage.setItem('search', value);
-  //   this.setState({ value: '' });
-  // }
+  handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    const { value } = this.state;
+    localStorage.setItem('search', value);
+    this.setState({ value: '' });
+  }
 
   render() {
     const { value } = this.state;
     // const inputValue = localStorage.getItem('search') || value;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className={styles.form} onSubmit={this.handleSubmit}>
         <input
           type="text"
           value={value}

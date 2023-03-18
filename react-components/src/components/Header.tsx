@@ -1,5 +1,4 @@
 import Menu from './Menu';
-import Search from './Search';
 import styles from './header.module.scss';
 import logo from '../assets/logo.webp';
 
@@ -9,7 +8,7 @@ function Header() {
       <div className={styles.logo}>
         <img src={logo} alt="logo" />
       </div>
-      <Search />
+      <h1 className={styles.title}>Catalog of IT books</h1>
       <Menu />
     </div>
   );
