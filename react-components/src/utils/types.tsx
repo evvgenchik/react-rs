@@ -9,4 +9,6 @@ interface IBook {
 
 type Books = IBook[];
 
-export type { IBook, Books };
+type MyState = { value: string };
+
+export type { IBook, Books, MyState };

@@ -14,3 +14,7 @@ body {
   font-size: 16rem;
   padding: 10rem;
 }
+
+.active {
+  text-decoration: underline;
+}

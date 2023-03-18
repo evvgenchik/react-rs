@@ -1,4 +1,3 @@
-import books from '../data/books';
 import { IBook } from '../utils/types';
 import styles from './product.module.scss';
 
