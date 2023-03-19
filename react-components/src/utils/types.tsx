@@ -23,4 +23,16 @@ interface WithRouterProps {
   location: ReturnType<typeof useLocation>;
 }
 
-export type { IBook, Books, MyState, IHeader, MyPropsHeader, WithRouterProps };
+interface Iroutes {
+  [key: string]: string;
+}
+
+export type {
+  IBook,
+  Books,
+  MyState,
+  IHeader,
+  MyPropsHeader,
+  WithRouterProps,
+  Iroutes,
+};
