@@ -15,7 +15,6 @@ class LocationTitle extends React.PureComponent<WithRouterProps, MyState> {
 
   render() {
     const { value } = this.state;
-
     return (
       <h1 className={styles.title}>{this.routes[value] || 'NOT FOUND'}</h1>
     );

@@ -8,9 +8,7 @@ describe('Search', () => {
     const { unmount } = render(<Search />);
     const input: HTMLInputElement = screen.getByRole('textbox');
     await userEvent.type(input, 'some book');
-
     unmount();
-
     expect(localStorage.getItem('search')).toStrictEqual('some book');
   });
 });

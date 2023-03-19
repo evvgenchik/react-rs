@@ -4,7 +4,7 @@ import Catalog from './Catalog';
 import books from '../data/books';
 
 describe('Catalog', () => {
-  it('Renders catalog component', () => {
+  it('Renders Catalog component', () => {
     render(<Catalog />);
     const items = screen.getAllByRole('listitem', {});
     expect(items).toHaveLength(books.length);

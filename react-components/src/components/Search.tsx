@@ -3,12 +3,9 @@ import styles from './catalog.module.scss';
 import { MyState } from '../utils/types';
 
 class Search extends Component<object, MyState> {
-  inputValue;
-
   constructor(props: object) {
     super(props);
-    this.inputValue = localStorage.getItem('search') || '';
-    this.state = { value: this.inputValue };
+    this.state = { value: localStorage.getItem('search') || '' };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
