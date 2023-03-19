@@ -32,10 +32,13 @@ class Search extends Component<object, MyState> {
 
   render() {
     const { value } = this.state;
-    // const inputValue = localStorage.getItem('search') || value;
 
     return (
-      <form className={styles.form} onSubmit={this.handleSubmit}>
+      <form
+        aria-label="form"
+        className={styles.form}
+        onSubmit={this.handleSubmit}
+      >
         <input
           type="text"
           value={value}
