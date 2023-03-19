@@ -3,26 +3,23 @@ import Menu from './Menu';
 import styles from './header.module.scss';
 import logo from '../assets/logo.webp';
 import { MyState, WithRouterProps } from '../utils/types';
+import withRouter from './WithRouter';
+import LocationTitle from './LocationTitle';
 
 class Header extends React.PureComponent<WithRouterProps, MyState> {
-  constructor(props: WithRouterProps) {
-    super(props);
-    this.state = { value: props.location.pathname };
-  }
-
   render() {
-    const { value } = this.state;
+    const LocationTitleWithRouter = withRouter(LocationTitle);
 
     return (
       <div className={styles.header}>
         <div className={styles.logo}>
           <img src={logo} alt="logo" />
         </div>
-        <h1 className={styles.title}>{value !== '/' ? value : 'Home'}</h1>
+        <LocationTitleWithRouter />
         <Menu />
       </div>
     );
   }
 }
 
-export default Header;
+export default withRouter(Header);

@@ -20,8 +20,5 @@ function App() {
     </BrowserRouter>
   );
 }
-// export function WrappedApp() {
-//   return <App />;
-// }
 
 export default App;
