@@ -8,6 +8,7 @@ function Menu() {
         Catalog
       </NavLink>
       <NavLink to="about">About Us</NavLink>
+      <NavLink to="form">Form</NavLink>
     </nav>
   );
 }

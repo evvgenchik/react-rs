@@ -1,5 +1,5 @@
 import { ChangeEvent, Component, FormEvent } from 'react';
-import styles from './catalog.module.scss';
+import styles from '../pages/catalog.module.scss';
 import { MyState } from '../utils/types';
 
 class Search extends Component<object, MyState> {
