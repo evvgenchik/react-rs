@@ -1,6 +1,6 @@
-import books from '../data/books';
-import Product from '../components/Product';
-import Search from '../components/Search';
+import books from '../../data/books';
+import Product from '../../components/Product/Product';
+import Search from '../../components/Search/Search';
 import styles from './catalog.module.scss';
 
 function Catalog() {

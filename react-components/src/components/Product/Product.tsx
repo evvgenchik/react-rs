@@ -1,4 +1,4 @@
-import { IBook } from '../utils/types';
+import { IBook } from '../../utils/types';
 import styles from './product.module.scss';
 
 function Product({ book }: { book: IBook }) {

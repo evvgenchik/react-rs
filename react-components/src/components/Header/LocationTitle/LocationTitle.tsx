@@ -1,11 +1,12 @@
 import React from 'react';
-import { MyState, WithRouterProps, Iroutes } from '../utils/types';
-import styles from './header.module.scss';
+import { MyState, WithRouterProps, Iroutes } from '../../../utils/types';
+import styles from '../header.module.scss';
 
 class LocationTitle extends React.PureComponent<WithRouterProps, MyState> {
   routes: Iroutes = {
     '/': 'HOME',
     '/about': 'ABOUT',
+    '/form': 'FORM',
   };
 
   constructor(props: WithRouterProps) {

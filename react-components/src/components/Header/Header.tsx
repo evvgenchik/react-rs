@@ -1,10 +1,10 @@
 import React from 'react';
-import Menu from './Menu';
+import Menu from './Menu/Menu';
 import styles from './header.module.scss';
-import logo from '../assets/logo.webp';
-import { MyState, WithRouterProps } from '../utils/types';
-import withRouter from './WithRouter';
-import LocationTitle from './LocationTitle';
+import logo from '../../assets/logo.webp';
+import { MyState, WithRouterProps } from '../../utils/types';
+import withRouter from '../WithRouter';
+import LocationTitle from './LocationTitle/LocationTitle';
 
 class Header extends React.PureComponent<WithRouterProps, MyState> {
   render() {

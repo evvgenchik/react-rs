@@ -1,6 +1,6 @@
 import { ChangeEvent, Component, FormEvent } from 'react';
-import styles from '../pages/catalog.module.scss';
-import { MyState } from '../utils/types';
+import styles from './Search.module.scss';
+import { MyState } from '../../utils/types';
 
 class Search extends Component<object, MyState> {
   constructor(props: object) {
