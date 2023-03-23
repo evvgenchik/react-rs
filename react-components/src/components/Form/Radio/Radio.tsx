@@ -1,24 +1,23 @@
-/* eslint-disable react/prefer-stateless-function */
-import { Component } from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { Component, LegacyRef } from 'react';
 import styles from './Radio.module.scss';
 
-class Radio extends Component {
+class Radio extends Component<{ inputRef: LegacyRef<HTMLInputElement> }> {
+  ref: LegacyRef<HTMLInputElement>;
+
+  constructor(props: { inputRef: LegacyRef<HTMLInputElement> }) {
+    super(props);
+    this.ref = props.inputRef;
+  }
+
   render() {
     return (
       <div className={styles.radio}>
-        <span>State:</span>
-        <div>
-          <label htmlFor="new">
-            New
-            <input type="radio" id="new" name="state" />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="user">
-            Used
-            <input type="radio" id="user" name="state" />
-          </label>
-        </div>
+        <span>Are you author</span>
+        <label className={styles.switch}>
+          <input ref={this.ref} type="radio" />
+          <span className={styles.slider} />
+        </label>
       </div>
     );
   }

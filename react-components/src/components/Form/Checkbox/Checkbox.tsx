@@ -1,19 +1,21 @@
 /* eslint-disable react/prefer-stateless-function */
-import { Component } from 'react';
+import { Component, LegacyRef } from 'react';
 import styles from './Checkbox.module.scss';
 
-class Checkbox extends Component {
+class Checkbox extends Component<{ inputRef: LegacyRef<HTMLInputElement> }> {
+  ref: LegacyRef<HTMLInputElement>;
+
+  constructor(props: { inputRef: LegacyRef<HTMLInputElement> }) {
+    super(props);
+    this.ref = props.inputRef;
+  }
+
   render() {
     return (
-      <div className={styles.checkbox}>
-        <span>Category: </span>
-        <label htmlFor="programming">
-          Programming
-          <input type="radio" name="programming" value="programming" />
-        </label>
-        <label htmlFor="other">
-          Other
-          <input type="radio" name="other" value="other" />
+      <div>
+        <label className={styles.radio} htmlFor="new">
+          I consent to use my personal data
+          <input ref={this.ref} type="checkbox" id="new" name="state" />
         </label>
       </div>
     );

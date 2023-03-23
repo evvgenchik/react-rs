@@ -1,13 +1,19 @@
-/* eslint-disable react/prefer-stateless-function */
-import { Component } from 'react';
+import { Component, LegacyRef } from 'react';
 import styles from './Select.module.scss';
 
-class Select extends Component {
+class Select extends Component<{ selectRef: LegacyRef<HTMLSelectElement> }> {
+  ref: LegacyRef<HTMLSelectElement>;
+
+  constructor(props: { selectRef: LegacyRef<HTMLSelectElement> }) {
+    super(props);
+    this.ref = props.selectRef;
+  }
+
   render() {
     return (
       <label className={styles.select} htmlFor="name">
         Language:
-        <select name="languages" id="lang">
+        <select ref={this.ref} name="languages" id="lang">
           <option value="javascript">JavaScript</option>
           <option value="php">PHP</option>
           <option value="java">Java</option>

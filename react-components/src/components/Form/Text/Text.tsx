@@ -1,7 +1,5 @@
-/* eslint-disable react/prefer-stateless-function */
 import { Component, LegacyRef } from 'react';
 import styles from './Text.module.scss';
-import { ICard } from '../../../utils/types';
 
 class Text extends Component<{ inputRef: LegacyRef<HTMLInputElement> }> {
   ref: LegacyRef<HTMLInputElement>;
@@ -14,7 +12,7 @@ class Text extends Component<{ inputRef: LegacyRef<HTMLInputElement> }> {
   render() {
     return (
       <label htmlFor="name">
-        Name:
+        Name book:
         <input ref={this.ref} className={styles.input} id="name" type="text" />
       </label>
     );

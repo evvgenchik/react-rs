@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import { ICard } from '../../../utils/types';
 
-class Button extends Component<{ addCard: (cards: ICard) => void }> {
-  constructor(props: { addCard: (cards: ICard) => void }) {
+class Button extends Component<{ addCard: (card: ICard) => void }> {
+  constructor(props: { addCard: (card: ICard) => void }) {
     super(props);
   }
 
