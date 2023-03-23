@@ -12,9 +12,14 @@ class Date extends Component<{ inputRef: LegacyRef<HTMLInputElement> }> {
 
   render() {
     return (
-      <label htmlFor="name">
+      <label htmlFor="date">
         Date:
-        <input ref={this.ref} className={styles.input} id="date" type="date" />
+        <input
+          ref={this.ref}
+          className={styles.input}
+          name="date"
+          type="date"
+        />
       </label>
     );
   }

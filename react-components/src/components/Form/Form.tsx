@@ -1,5 +1,5 @@
 /* eslint-disable react/destructuring-assignment */
-import { Component, createRef, FormEvent, LegacyRef } from 'react';
+import { Component, createRef, FormEvent, RefObject } from 'react';
 import styles from './form.module.scss';
 import Text from './Text/Text';
 import Checkbox from './Checkbox/Checkbox';
@@ -9,19 +9,20 @@ import Select from './Select/Select';
 import File from './File/File';
 import Button from './Button/Button';
 import { ICard } from '../../utils/types';
+import getFile from '../../utils/helper';
 
 class Form extends Component<{ addCard: (cards: ICard) => void }> {
-  inputText: LegacyRef<HTMLInputElement>;
+  inputText: RefObject<HTMLInputElement>;
 
-  inputDate: LegacyRef<HTMLInputElement>;
+  inputDate: RefObject<HTMLInputElement>;
 
-  inputRadio: LegacyRef<HTMLInputElement>;
+  inputRadio: RefObject<HTMLInputElement>;
 
-  inputCheckbox: LegacyRef<HTMLInputElement>;
+  inputCheckbox: RefObject<HTMLInputElement>;
 
-  inputFile: LegacyRef<HTMLInputElement>;
+  inputFile: RefObject<HTMLInputElement>;
 
-  inputSelect: LegacyRef<HTMLSelectElement>;
+  inputSelect: RefObject<HTMLSelectElement>;
 
   constructor(props: { addCard: (cards: ICard) => void }) {
     super(props);
@@ -34,19 +35,15 @@ class Form extends Component<{ addCard: (cards: ICard) => void }> {
     this.inputFile = createRef<HTMLInputElement>();
   }
 
-  // eslint-disable-next-line class-methods-use-this
   handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-
-    console.log(URL.createObjectURL(this.inputFile.current?.files?.[0]));
-
     const card = {
-      // name: this.inputText.current.value as string,
-      // date: this.inputDate.current.value as string,
-      // category: this.inputRadio.current.checked as string,
-      // consent: this.inputCheckbox.current.checked as string,
-      // language: this.inputSelect.current.value as string,
-      icon: this.inputFile?.current?.value as string,
+      name: this.inputText?.current?.value as string,
+      date: this.inputDate?.current?.value as string,
+      author: this.inputRadio?.current?.checked as boolean,
+      consent: this.inputRadio?.current?.checked as boolean,
+      language: this.inputSelect?.current?.value as string,
+      icon: getFile(this.inputFile),
     };
 
     this.props.addCard(card);
@@ -68,10 +65,3 @@ class Form extends Component<{ addCard: (cards: ICard) => void }> {
 }
 
 export default Form;
-// eslint-disable-next-line no-lone-blocks
-{
-  /* <Date ref={this.inputDate} />
-        
-        <File ref={this.inputFile} />
-         */
-}

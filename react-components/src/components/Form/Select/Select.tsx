@@ -13,7 +13,7 @@ class Select extends Component<{ selectRef: LegacyRef<HTMLSelectElement> }> {
     return (
       <label className={styles.select} htmlFor="name">
         Language:
-        <select ref={this.ref} name="languages" id="lang">
+        <select ref={this.ref} name="language" id="lang">
           <option value="javascript">JavaScript</option>
           <option value="php">PHP</option>
           <option value="java">Java</option>
