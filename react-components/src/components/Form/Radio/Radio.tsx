@@ -6,17 +6,17 @@ class Radio extends Component {
   render() {
     return (
       <div className={styles.radio}>
-        <span>Gender:</span>
+        <span>State:</span>
         <div>
-          <label htmlFor="male">
-            Male
-            <input type="radio" id="male" name="gender" />
+          <label htmlFor="new">
+            New
+            <input type="radio" id="new" name="state" />
           </label>
         </div>
         <div>
-          <label htmlFor="female">
-            Female
-            <input type="radio" id="female" name="gender" />
+          <label htmlFor="user">
+            Used
+            <input type="radio" id="user" name="state" />
           </label>
         </div>
       </div>

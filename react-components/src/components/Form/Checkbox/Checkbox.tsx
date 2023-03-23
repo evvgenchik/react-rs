@@ -6,14 +6,14 @@ class Checkbox extends Component {
   render() {
     return (
       <div className={styles.checkbox}>
-        <span>Role: </span>
-        <label htmlFor="male">
-          Author
-          <input type="radio" name="author" value="male" />
+        <span>Category: </span>
+        <label htmlFor="programming">
+          Programming
+          <input type="radio" name="programming" value="programming" />
         </label>
-        <label htmlFor="female">
-          Customer
-          <input type="radio" name="customer" value="female" />
+        <label htmlFor="other">
+          Other
+          <input type="radio" name="other" value="other" />
         </label>
       </div>
     );

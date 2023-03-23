@@ -6,7 +6,7 @@ class File extends Component {
   render() {
     return (
       <label className={styles.file} htmlFor="icon">
-        Icon:
+        Сover:
         <input name="icon" type="file" title=" " />
       </label>
     );

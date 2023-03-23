@@ -1,10 +1,11 @@
 /* eslint-disable react/prefer-stateless-function */
 import { Component } from 'react';
+import styles from './Select.module.scss';
 
 class Select extends Component {
   render() {
     return (
-      <label htmlFor="name">
+      <label className={styles.select} htmlFor="name">
         Language:
         <select name="languages" id="lang">
           <option value="javascript">JavaScript</option>

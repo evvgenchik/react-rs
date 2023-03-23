@@ -12,6 +12,7 @@ interface IBook {
 type Books = IBook[];
 
 type MyState = { value: string };
+type MyProps = { value: string };
 
 type MyPropsHeader = { location: Location };
 
@@ -27,6 +28,15 @@ interface Iroutes {
   [key: string]: string;
 }
 
+interface ICard {
+  name: string;
+  date: string;
+  state: string;
+  category: string;
+  icon: string;
+  language: string;
+}
+
 export type {
   IBook,
   Books,
@@ -35,4 +45,6 @@ export type {
   MyPropsHeader,
   WithRouterProps,
   Iroutes,
+  MyProps,
+  ICard,
 };
