@@ -3,7 +3,6 @@ import styles from './CardList.module.scss';
 import { ICard } from '../../utils/types';
 
 function CardList({ cards }: { cards: ICard[] }) {
-  if (!cards.length) return '';
   return (
     <ul className={styles.list}>
       {cards.map((book, index) => (

@@ -20,7 +20,7 @@ class FormPage extends Component<object, { cards: ICard[] }> {
     return (
       <>
         <Form addCard={(card: ICard) => this.addCard(card)} />
-        <CardList cards={cards} />
+        {cards.length > 0 && <CardList cards={cards} />}
       </>
     );
   }
