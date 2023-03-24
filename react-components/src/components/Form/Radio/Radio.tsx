@@ -13,7 +13,7 @@ class Radio extends Component<{ inputRef: LegacyRef<HTMLInputElement> }> {
   render() {
     return (
       <div className={styles.radio}>
-        <span>Are you author</span>
+        <span>Download Permission</span>
         <label className={styles.switch}>
           <input ref={this.ref} name="author" type="radio" />
           <span className={styles.slider} />

@@ -13,8 +13,8 @@ class Checkbox extends Component<{ inputRef: LegacyRef<HTMLInputElement> }> {
   render() {
     return (
       <div>
-        <label className={styles.radio} htmlFor="consent">
-          I agree to public access to this book
+        <label className={styles.checkbox} htmlFor="consent">
+          Agree with site rules
           <input ref={this.ref} type="checkbox" name="consent" />
         </label>
       </div>

@@ -56,9 +56,9 @@ class Form extends Component<{ addCard: (cards: ICard) => void }> {
         <Text inputRef={this.inputText} />
         <Date inputRef={this.inputDate} />
         <Radio inputRef={this.inputRadio} />
-        <Checkbox inputRef={this.inputCheckbox} />
         <Select selectRef={this.inputSelect} />
         <File fileRef={this.inputFile} />
+        <Checkbox inputRef={this.inputCheckbox} />
         <Button addCard={(card: ICard) => addCard(card)} />
       </form>
     );
