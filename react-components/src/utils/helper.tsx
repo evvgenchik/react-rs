@@ -1,5 +1,4 @@
 import { RefObject } from 'react';
-import { ICard } from './types';
 
 // const createObj = (
 //   ...args: Array<RefObject<HTMLInputElement | HTMLSelectElement>>

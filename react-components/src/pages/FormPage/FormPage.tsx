@@ -11,7 +11,7 @@ class FormPage extends Component {
 
   addCard(card: ICard) {
     console.log(card);
-    this.setState((prevState: object) => ({ ...prevState, ...card }));
+    this.setState((prevState: object) => [{ ...prevState, ...card }]);
   }
 
   render() {

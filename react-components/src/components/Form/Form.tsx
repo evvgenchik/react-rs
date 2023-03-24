@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import { Component, createRef, FormEvent, RefObject } from 'react';
 import styles from './form.module.scss';
 import Text from './Text/Text';
@@ -37,7 +36,7 @@ class Form extends Component<{ addCard: (cards: ICard) => void }> {
 
   handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const card = {
+    const card: ICard = {
       name: this.inputText?.current?.value as string,
       date: this.inputDate?.current?.value as string,
       author: this.inputRadio?.current?.checked as boolean,
@@ -45,11 +44,13 @@ class Form extends Component<{ addCard: (cards: ICard) => void }> {
       language: this.inputSelect?.current?.value as string,
       icon: getFile(this.inputFile),
     };
-
-    this.props.addCard(card);
+    const { addCard } = this.props;
+    addCard(card);
   };
 
   render() {
+    const { addCard } = this.props;
+
     return (
       <form onSubmit={this.handleSubmit} className={styles.form}>
         <Text inputRef={this.inputText} />
@@ -58,7 +59,7 @@ class Form extends Component<{ addCard: (cards: ICard) => void }> {
         <Checkbox inputRef={this.inputCheckbox} />
         <Select selectRef={this.inputSelect} />
         <File fileRef={this.inputFile} />
-        <Button addCard={(card: ICard) => this.props.addCard(card)} />
+        <Button addCard={(card: ICard) => addCard(card)} />
       </form>
     );
   }
