@@ -13,6 +13,8 @@ import getFile from '../../utils/helper';
 class Form extends Component<{ addCard: (cards: ICard) => void }> {
   inputText: RefObject<HTMLInputElement>;
 
+  inputDescription: RefObject<HTMLInputElement>;
+
   inputDate: RefObject<HTMLInputElement>;
 
   inputRadio: RefObject<HTMLInputElement>;
@@ -27,6 +29,7 @@ class Form extends Component<{ addCard: (cards: ICard) => void }> {
     super(props);
 
     this.inputText = createRef<HTMLInputElement>();
+    this.inputDescription = createRef<HTMLInputElement>();
     this.inputDate = createRef<HTMLInputElement>();
     this.inputRadio = createRef<HTMLInputElement>();
     this.inputCheckbox = createRef<HTMLInputElement>();
@@ -38,6 +41,7 @@ class Form extends Component<{ addCard: (cards: ICard) => void }> {
     e.preventDefault();
     const card: ICard = {
       name: this.inputText?.current?.value as string,
+      description: this.inputText?.current?.value as string,
       date: this.inputDate?.current?.value as string,
       download: this.inputRadio?.current?.checked as boolean,
       agreement: this.inputCheckbox?.current?.checked as boolean,
@@ -54,7 +58,8 @@ class Form extends Component<{ addCard: (cards: ICard) => void }> {
 
     return (
       <form onSubmit={this.handleSubmit} className={styles.form}>
-        <Text inputRef={this.inputText} />
+        <Text inputRef={this.inputText} LabelText="Name book:" />
+        <Text inputRef={this.inputDescription} LabelText="Description:" />
         <Date inputRef={this.inputDate} />
         <Radio inputRef={this.inputRadio} />
         <Select selectRef={this.inputSelect} />

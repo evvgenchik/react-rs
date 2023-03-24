@@ -1,19 +1,15 @@
 import { Component, LegacyRef } from 'react';
+import { IInputTextProps } from '../../../utils/types';
 import styles from './Text.module.scss';
 
-class Text extends Component<{ inputRef: LegacyRef<HTMLInputElement> }> {
-  ref: LegacyRef<HTMLInputElement>;
-
-  constructor(props: { inputRef: LegacyRef<HTMLInputElement> }) {
-    super(props);
-    this.ref = props.inputRef;
-  }
-
+class Text extends Component<IInputTextProps> {
   render() {
+    const { LabelText, inputRef } = this.props;
+
     return (
       <label htmlFor="name">
-        Name book:
-        <input ref={this.ref} className={styles.input} id="name" type="text" />
+        {LabelText}
+        <input ref={inputRef} className={styles.input} id="name" type="text" />
       </label>
     );
   }

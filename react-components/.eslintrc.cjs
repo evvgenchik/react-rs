@@ -28,5 +28,13 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'jsx-a11y/label-has-associated-control': [
+      'error',
+      {
+        required: {
+          some: ['nesting', 'id'],
+        },
+      },
+    ],
   },
 };

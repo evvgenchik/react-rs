@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom';
+import { LegacyRef } from 'react';
 
 interface IBook {
   title: string;
@@ -30,11 +31,17 @@ interface Iroutes {
 
 interface ICard {
   name: string;
+  description: string;
   date: string;
   agreement: boolean;
   download: boolean;
   language: string;
   icon: string;
+}
+
+interface IInputTextProps {
+  inputRef: LegacyRef<HTMLInputElement>;
+  LabelText: string;
 }
 
 export type {
@@ -47,4 +54,5 @@ export type {
   Iroutes,
   MyProps,
   ICard,
+  IInputTextProps,
 };

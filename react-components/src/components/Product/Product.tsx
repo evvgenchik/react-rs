@@ -7,13 +7,10 @@ function Product({ book }: { book: ICard }) {
       <div className={styles.icon}>
         <img src={book.icon} alt="icon book" />
       </div>
+      <span>{book.date}</span>
       <h2>{book.name}</h2>
-      <h3>{book.language}</h3>
-      <h4>
-        Publication date:
-        {book.date}
-      </h4>
-      <h4>Download permisson: {book.download ? 'Yes' : 'No'}</h4>
+      <p>Category: {book.language}</p>
+      <p>Download permisson: {book.download ? 'Yes' : 'No'}</p>
     </li>
   );
 }
