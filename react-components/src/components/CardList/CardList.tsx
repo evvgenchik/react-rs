@@ -1,12 +1,14 @@
-import books from '../../data/books';
 import Product from '../Product/Product';
 import styles from './CardList.module.scss';
+import { ICard } from '../../utils/types';
 
-function CardList() {
+function CardList({ cards }: { cards: ICard[] }) {
+  if (!cards.length) return '';
   return (
     <ul className={styles.list}>
-      {books.map((book) => (
-        <Product book={book} key={book.isbn13} />
+      {cards.map((book, index) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <Product book={book} key={index} />
       ))}
     </ul>
   );
