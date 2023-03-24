@@ -11,31 +11,19 @@ import { ICard } from '../../utils/types';
 import getFile from '../../utils/helper';
 
 class Form extends Component<{ addCard: (cards: ICard) => void }> {
-  inputText: RefObject<HTMLInputElement>;
+  inputText: RefObject<HTMLInputElement> = createRef<HTMLInputElement>();
 
-  inputDescription: RefObject<HTMLInputElement>;
+  inputDescription: RefObject<HTMLInputElement> = createRef<HTMLInputElement>();
 
-  inputDate: RefObject<HTMLInputElement>;
+  inputDate: RefObject<HTMLInputElement> = createRef<HTMLInputElement>();
 
-  inputRadio: RefObject<HTMLInputElement>;
+  inputRadio: RefObject<HTMLInputElement> = createRef<HTMLInputElement>();
 
-  inputCheckbox: RefObject<HTMLInputElement>;
+  inputCheckbox: RefObject<HTMLInputElement> = createRef<HTMLInputElement>();
 
-  inputFile: RefObject<HTMLInputElement>;
+  inputFile: RefObject<HTMLInputElement> = createRef<HTMLInputElement>();
 
-  inputSelect: RefObject<HTMLSelectElement>;
-
-  constructor(props: { addCard: (cards: ICard) => void }) {
-    super(props);
-
-    this.inputText = createRef<HTMLInputElement>();
-    this.inputDescription = createRef<HTMLInputElement>();
-    this.inputDate = createRef<HTMLInputElement>();
-    this.inputRadio = createRef<HTMLInputElement>();
-    this.inputCheckbox = createRef<HTMLInputElement>();
-    this.inputSelect = createRef<HTMLSelectElement>();
-    this.inputFile = createRef<HTMLInputElement>();
-  }
+  inputSelect: RefObject<HTMLSelectElement> = createRef<HTMLSelectElement>();
 
   handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -54,8 +42,6 @@ class Form extends Component<{ addCard: (cards: ICard) => void }> {
   };
 
   render() {
-    const { addCard } = this.props;
-
     return (
       <form onSubmit={this.handleSubmit} className={styles.form}>
         <Text inputRef={this.inputText} LabelText="Name book:" />
@@ -65,7 +51,7 @@ class Form extends Component<{ addCard: (cards: ICard) => void }> {
         <Select selectRef={this.inputSelect} />
         <File fileRef={this.inputFile} />
         <Checkbox inputRef={this.inputCheckbox} />
-        <Button addCard={(card: ICard) => addCard(card)} />
+        <Button handleSubmit={this.handleSubmit} />
       </form>
     );
   }

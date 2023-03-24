@@ -3,19 +3,14 @@ import { Component, LegacyRef } from 'react';
 import styles from './Checkbox.module.scss';
 
 class Checkbox extends Component<{ inputRef: LegacyRef<HTMLInputElement> }> {
-  ref: LegacyRef<HTMLInputElement>;
-
-  constructor(props: { inputRef: LegacyRef<HTMLInputElement> }) {
-    super(props);
-    this.ref = props.inputRef;
-  }
-
   render() {
+    const { inputRef } = this.props;
+
     return (
       <div>
         <label className={styles.checkbox} htmlFor="consent">
           Agree with site rules
-          <input ref={this.ref} type="checkbox" name="consent" />
+          <input ref={inputRef} type="checkbox" name="consent" />
         </label>
       </div>
     );

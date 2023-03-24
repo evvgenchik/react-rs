@@ -2,18 +2,13 @@ import { Component, LegacyRef } from 'react';
 import styles from './Select.module.scss';
 
 class Select extends Component<{ selectRef: LegacyRef<HTMLSelectElement> }> {
-  ref: LegacyRef<HTMLSelectElement>;
-
-  constructor(props: { selectRef: LegacyRef<HTMLSelectElement> }) {
-    super(props);
-    this.ref = props.selectRef;
-  }
-
   render() {
+    const { selectRef } = this.props;
+
     return (
       <label className={styles.select} htmlFor="name">
         Language:
-        <select ref={this.ref} name="language" id="lang">
+        <select ref={selectRef} name="language" id="lang">
           <option value="JavaScript">JavaScript</option>
           <option value="PHP">PHP</option>
           <option value="Java">Java</option>

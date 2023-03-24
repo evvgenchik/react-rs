@@ -1,21 +1,15 @@
-/* eslint-disable react/prefer-stateless-function */
 import { Component, LegacyRef } from 'react';
 import styles from './Date.module.scss';
 
 class Date extends Component<{ inputRef: LegacyRef<HTMLInputElement> }> {
-  ref: LegacyRef<HTMLInputElement>;
-
-  constructor(props: { inputRef: LegacyRef<HTMLInputElement> }) {
-    super(props);
-    this.ref = props.inputRef;
-  }
-
   render() {
+    const { inputRef } = this.props;
+
     return (
       <label htmlFor="date">
         Date:
         <input
-          ref={this.ref}
+          ref={inputRef}
           className={styles.input}
           name="date"
           type="date"
