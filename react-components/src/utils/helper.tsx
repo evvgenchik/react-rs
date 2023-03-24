@@ -14,6 +14,9 @@ import { RefObject } from 'react';
 // };
 
 const getFile = (fileRef: RefObject<HTMLInputElement>) => {
-  return URL.createObjectURL(fileRef.current?.files?.[0] as Blob);
+  const blobLink = fileRef.current?.files?.[0];
+  if (!blobLink) return '';
+  return URL.createObjectURL(blobLink as Blob);
 };
+
 export default getFile;

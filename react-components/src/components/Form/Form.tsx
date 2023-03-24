@@ -1,4 +1,10 @@
-import { Component, createRef, FormEvent, RefObject } from 'react';
+import {
+  Component,
+  createRef,
+  FormEvent,
+  RefObject,
+  MutableRefObject,
+} from 'react';
 import styles from './form.module.scss';
 import Text from './Text/Text';
 import Checkbox from './Checkbox/Checkbox';
@@ -17,7 +23,9 @@ class Form extends Component<{ addCard: (cards: ICard) => void }> {
 
   inputDate: RefObject<HTMLInputElement> = createRef<HTMLInputElement>();
 
-  inputRadio: RefObject<HTMLInputElement> = createRef<HTMLInputElement>();
+  inputRadio: MutableRefObject<HTMLInputElement[] | null> = createRef<
+    HTMLInputElement[] | null
+  >();
 
   inputCheckbox: RefObject<HTMLInputElement> = createRef<HTMLInputElement>();
 
@@ -27,11 +35,13 @@ class Form extends Component<{ addCard: (cards: ICard) => void }> {
 
   handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    const findCheckedRadio = this.inputRadio?.current.find((el) => el.checked);
     const card: ICard = {
       name: this.inputText?.current?.value as string,
       description: this.inputText?.current?.value as string,
       date: this.inputDate?.current?.value as string,
-      download: this.inputRadio?.current?.checked as boolean,
+      format: getChecked(this.inputRadio?.current),
       agreement: this.inputCheckbox?.current?.checked as boolean,
       language: this.inputSelect?.current?.value as string,
       icon: getFile(this.inputFile),

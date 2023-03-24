@@ -34,7 +34,7 @@ interface ICard {
   description: string;
   date: string;
   agreement: boolean;
-  download: boolean;
+  format: boolean;
   language: string;
   icon: string;
 }

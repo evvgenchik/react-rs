@@ -9,7 +9,7 @@ const books = [
     url: 'https://itbook.store/books/9781098103828',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -21,7 +21,7 @@ const books = [
     url: 'https://itbook.store/books/9781098104030',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -33,7 +33,7 @@ const books = [
     url: 'https://itbook.store/books/9781098106225',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -45,7 +45,7 @@ const books = [
     url: 'https://itbook.store/books/9781098111878',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -57,7 +57,7 @@ const books = [
     url: 'https://itbook.store/books/9781098112844',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -69,7 +69,7 @@ const books = [
     url: 'https://itbook.store/books/9781098113162',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -81,7 +81,7 @@ const books = [
     url: 'https://itbook.store/books/9781098116743',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -93,7 +93,7 @@ const books = [
     url: 'https://itbook.store/books/9781098119515',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -105,7 +105,7 @@ const books = [
     url: 'https://itbook.store/books/9781098121228',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -117,7 +117,7 @@ const books = [
     url: 'https://itbook.store/books/9781098130923',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -129,7 +129,7 @@ const books = [
     url: 'https://itbook.store/books/9781642002263',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -142,7 +142,7 @@ const books = [
     url: 'https://itbook.store/books/9781800562738',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -155,7 +155,7 @@ const books = [
     url: 'https://itbook.store/books/9781801077330',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -168,7 +168,7 @@ const books = [
     url: 'https://itbook.store/books/9781801810999',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -181,7 +181,7 @@ const books = [
     url: 'https://itbook.store/books/9781801811132',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -193,7 +193,7 @@ const books = [
     url: 'https://itbook.store/books/9781801812856',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -205,7 +205,7 @@ const books = [
     url: 'https://itbook.store/books/9781803242002',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -218,7 +218,7 @@ const books = [
     url: 'https://itbook.store/books/9781804612569',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -230,7 +230,7 @@ const books = [
     url: 'https://itbook.store/books/9781804617007',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
   {
@@ -243,7 +243,7 @@ const books = [
     url: 'https://itbook.store/books/9781804618295',
     date: '12.12.1998',
     agreement: true,
-    download: true,
+    format: 'PDF',
     language: 'Python',
   },
 ];
