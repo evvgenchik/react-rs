@@ -21,6 +21,23 @@ ol[class] {
   list-style: none;
 }
 
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
 a:not([class]) {
   text-decoration-skip-ink: auto;
 }

@@ -14,14 +14,14 @@ class Select extends Component<{ selectRef: LegacyRef<HTMLSelectElement> }> {
       <label className={styles.select} htmlFor="name">
         Language:
         <select ref={this.ref} name="language" id="lang">
-          <option value="javascript">JavaScript</option>
-          <option value="php">PHP</option>
-          <option value="java">Java</option>
-          <option value="golang">Golang</option>
-          <option value="python">Python</option>
-          <option value="c#">C#</option>
+          <option value="JavaScript">JavaScript</option>
+          <option value="PHP">PHP</option>
+          <option value="Java">Java</option>
+          <option value="Golang">Golang</option>
+          <option value="Python">Python</option>
+          <option value="C#">C#</option>
           <option value="C++">C++</option>
-          <option value="erlang">Erlang</option>
+          <option value="Erlang">Erlang</option>
         </select>
       </label>
     );

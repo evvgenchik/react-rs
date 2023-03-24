@@ -9,7 +9,7 @@ function Product({ book }: { book: ICard }) {
       </div>
       <span>{book.date}</span>
       <h2>{book.name}</h2>
-      <p>Category: {book.language}</p>
+      <h4>Language: {book.language}</h4>
       <p>Download permisson: {book.download ? 'Yes' : 'No'}</p>
     </li>
   );

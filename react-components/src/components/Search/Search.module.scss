@@ -12,3 +12,10 @@
   width: 100%;
   text-align: center;
 }
+
+@media (max-width:620px) {
+  .search {
+    transform: translate(0, 0);
+    width: 200rem;
+  }
+}
