@@ -13,7 +13,7 @@ class File extends Component<{ fileRef: LegacyRef<HTMLInputElement> }> {
   render() {
     return (
       <label className={styles.file} htmlFor="icon">
-        Сover:
+        Сover Icon:
         <input ref={this.ref} name="icon" type="file" title=" " />
       </label>
     );

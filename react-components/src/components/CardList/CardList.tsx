@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import Product from '../Product/Product';
 import styles from './CardList.module.scss';
 import { ICard } from '../../utils/types';
@@ -5,9 +6,8 @@ import { ICard } from '../../utils/types';
 function CardList({ cards }: { cards: ICard[] }) {
   return (
     <ul className={styles.list}>
-      {cards.map((book, index) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <Product book={book} key={index} />
+      {cards.map((book) => (
+        <Product book={book} key={uuidv4()} />
       ))}
     </ul>
   );

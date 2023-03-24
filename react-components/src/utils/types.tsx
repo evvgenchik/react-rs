@@ -31,8 +31,8 @@ interface Iroutes {
 interface ICard {
   name: string;
   date: string;
-  consent: boolean;
-  author: boolean;
+  agreement: boolean;
+  download: boolean;
   language: string;
   icon: string;
 }

@@ -10,9 +10,9 @@ class FormPage extends Component<object, { cards: ICard[] }> {
   }
 
   addCard(card: ICard) {
-    this.setState((prevState: { cards: ICard[] }) => ({
-      cards: [{ ...prevState.cards, ...card }],
-    }));
+    this.setState((prevState: { cards: ICard[] }) => {
+      return { cards: [...prevState.cards, card] };
+    });
   }
 
   render() {

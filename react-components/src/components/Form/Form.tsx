@@ -39,11 +39,12 @@ class Form extends Component<{ addCard: (cards: ICard) => void }> {
     const card: ICard = {
       name: this.inputText?.current?.value as string,
       date: this.inputDate?.current?.value as string,
-      author: this.inputRadio?.current?.checked as boolean,
-      consent: this.inputRadio?.current?.checked as boolean,
+      download: this.inputRadio?.current?.checked as boolean,
+      agreement: this.inputCheckbox?.current?.checked as boolean,
       language: this.inputSelect?.current?.value as string,
       icon: getFile(this.inputFile),
     };
+
     const { addCard } = this.props;
     addCard(card);
   };
