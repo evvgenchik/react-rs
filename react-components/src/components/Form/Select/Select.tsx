@@ -1,9 +1,10 @@
-import { Component, LegacyRef } from 'react';
+import { Component } from 'react';
 import styles from './Select.module.scss';
+import { IInputSelectProps } from '../../../utils/types';
 
-class Select extends Component<{ selectRef: LegacyRef<HTMLSelectElement> }> {
+class Select extends Component<IInputSelectProps> {
   render() {
-    const { selectRef } = this.props;
+    const { selectRef, errorMessage } = this.props;
 
     return (
       <label className={styles.select} htmlFor="name">
@@ -18,6 +19,7 @@ class Select extends Component<{ selectRef: LegacyRef<HTMLSelectElement> }> {
           <option value="C++">C++</option>
           <option value="Erlang">Erlang</option>
         </select>
+        {errorMessage && <span>Error: {errorMessage}</span>}
       </label>
     );
   }

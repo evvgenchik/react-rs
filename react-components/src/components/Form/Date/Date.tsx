@@ -1,9 +1,10 @@
 import { Component, LegacyRef } from 'react';
 import styles from './Date.module.scss';
+import { IInputTextProps } from '../../../utils/types';
 
-class Date extends Component<{ inputRef: LegacyRef<HTMLInputElement> }> {
+class Date extends Component<IInputTextProps> {
   render() {
-    const { inputRef } = this.props;
+    const { inputRef, errorMessage } = this.props;
 
     return (
       <label htmlFor="date">
@@ -14,6 +15,7 @@ class Date extends Component<{ inputRef: LegacyRef<HTMLInputElement> }> {
           name="date"
           type="date"
         />
+        {errorMessage && <span>Error: {errorMessage}</span>}
       </label>
     );
   }

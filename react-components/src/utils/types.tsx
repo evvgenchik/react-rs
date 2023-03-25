@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { LegacyRef } from 'react';
+import { LegacyRef, MutableRefObject, RefObject } from 'react';
 
 interface IBook {
   title: string;
@@ -51,7 +51,31 @@ interface ICardNoValidate {
 
 interface IInputTextProps {
   inputRef: LegacyRef<HTMLInputElement>;
-  LabelText: string;
+  LabelText?: string;
+  errorMessage: string;
+}
+interface IInputSelectProps {
+  selectRef: LegacyRef<HTMLSelectElement>;
+  errorMessage: string;
+}
+interface IInputFileProps {
+  fileRef: LegacyRef<HTMLInputElement>;
+  errorMessage: string;
+}
+
+interface IInputRadioProps {
+  inputRef: RefObject<HTMLInputElement[] | null>;
+  errorMessage: string;
+}
+
+interface IStateForm {
+  name: string;
+  description: string;
+  date: string;
+  format: string;
+  agreement: string;
+  language: string;
+  icon: string;
 }
 
 export type {
@@ -66,4 +90,8 @@ export type {
   ICard,
   ICardNoValidate,
   IInputTextProps,
+  IInputSelectProps,
+  IInputFileProps,
+  IInputRadioProps,
+  IStateForm,
 };

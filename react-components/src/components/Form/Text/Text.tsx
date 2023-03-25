@@ -4,12 +4,13 @@ import styles from './Text.module.scss';
 
 class Text extends Component<IInputTextProps> {
   render() {
-    const { LabelText, inputRef } = this.props;
+    const { LabelText, inputRef, errorMessage } = this.props;
 
     return (
       <label htmlFor="name">
         {LabelText}
         <input ref={inputRef} className={styles.input} id="name" type="text" />
+        {errorMessage && <span>Error: {errorMessage}</span>}
       </label>
     );
   }

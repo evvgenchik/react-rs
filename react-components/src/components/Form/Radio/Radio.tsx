@@ -1,18 +1,13 @@
-import { Component, MutableRefObject } from 'react';
+import { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './Radio.module.scss';
+import { IInputRadioProps } from '../../../utils/types';
 
-class Radio extends Component<{
-  inputRef: MutableRefObject<HTMLInputElement[] | null>;
-}> {
+class Radio extends Component<IInputRadioProps> {
   inputs = ['PDF', 'TXT'];
 
   render() {
-    const { inputRef } = this.props as {
-      inputRef: MutableRefObject<HTMLInputElement[]>;
-    };
-
-    inputRef.current = [];
+    const { inputRef, errorMessage } = this.props;
 
     return (
       <label className={styles.radio}>
@@ -23,7 +18,9 @@ class Radio extends Component<{
             <input
               key={uuidv4()}
               ref={(el) => {
-                inputRef.current[i] = el as HTMLInputElement;
+                if (el && inputRef && inputRef.current) {
+                  inputRef.current[i] = el as HTMLInputElement;
+                }
               }}
               name="format"
               value={item}
