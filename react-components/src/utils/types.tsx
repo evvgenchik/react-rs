@@ -34,9 +34,19 @@ interface ICard {
   description: string;
   date: string;
   agreement: boolean;
-  format: boolean;
+  format: string;
   language: string;
   icon: string;
+}
+
+interface ICardNoValidate {
+  name: string | undefined;
+  description: string | undefined;
+  date: string | undefined;
+  agreement: boolean | undefined;
+  format: string | undefined;
+  language: string | undefined;
+  icon: string | undefined;
 }
 
 interface IInputTextProps {
@@ -54,5 +64,6 @@ export type {
   Iroutes,
   MyProps,
   ICard,
+  ICardNoValidate,
   IInputTextProps,
 };

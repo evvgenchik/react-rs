@@ -23,7 +23,6 @@ class Radio extends Component<{
             <input
               key={uuidv4()}
               ref={(el) => {
-                console.log(el);
                 inputRef.current[i] = el as HTMLInputElement;
               }}
               name="format"
@@ -32,25 +31,9 @@ class Radio extends Component<{
             />
           </label>
         ))}
-        {/* <label>
-          PDF
-          <input ref={inputRef} name="download" value="PDF" type="radio" />
-        </label>
-        <label>
-          TXT
-          <input ref={inputRef} name="download" value="TXT" type="radio" />
-        </label> */}
       </label>
     );
   }
 }
 
 export default Radio;
-
-// <div className={styles.radio}>
-//   <span>Download Permission</span>
-//   <label className={styles.switch}>
-//     <input ref={inputRef} name="download" type="radio" />
-//     <span className={styles.slider} />
-//   </label>
-// </div>;

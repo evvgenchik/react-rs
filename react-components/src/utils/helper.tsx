@@ -13,10 +13,11 @@ import { RefObject } from 'react';
 //   return obj;
 // };
 
-const getFile = (fileRef: RefObject<HTMLInputElement>) => {
-  const blobLink = fileRef.current?.files?.[0];
-  if (!blobLink) return '';
-  return URL.createObjectURL(blobLink as Blob);
-};
+// const getFile = (file: File) => {
+//   const blobLink = file.current?.files?.[0];
+//   console.log(blobLink?.type);
+//   if (!blobLink) return '';
+//   return URL.createObjectURL(blobLink as Blob);
+// };
 
-export default getFile;
+export default {};

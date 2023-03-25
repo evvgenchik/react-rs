@@ -15,6 +15,7 @@ import File from './File/File';
 import Button from './Button/Button';
 import { ICard } from '../../utils/types';
 import getFile from '../../utils/helper';
+import isValid from '../../utils/validation';
 
 class Form extends Component<{ addCard: (cards: ICard) => void }> {
   inputText: RefObject<HTMLInputElement> = createRef<HTMLInputElement>();
@@ -35,25 +36,34 @@ class Form extends Component<{ addCard: (cards: ICard) => void }> {
 
   handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    let findCheckedRadio: string | undefined;
 
-    const findCheckedRadio = this.inputRadio?.current.find((el) => el.checked);
-    const card: ICard = {
-      name: this.inputText?.current?.value as string,
-      description: this.inputText?.current?.value as string,
-      date: this.inputDate?.current?.value as string,
-      format: getChecked(this.inputRadio?.current),
-      agreement: this.inputCheckbox?.current?.checked as boolean,
-      language: this.inputSelect?.current?.value as string,
-      icon: getFile(this.inputFile),
-    };
+    if (this.inputRadio?.current) {
+      const findElem = this.inputRadio?.current.find(
+        (el) => el.checked
+      ) as HTMLInputElement;
+      findCheckedRadio = findElem ? findElem.value : undefined;
 
-    const { addCard } = this.props;
-    addCard(card);
+      const card: ICard = {
+        name: this.inputText?.current?.value as string,
+        description: this.inputDescription?.current?.value as string,
+        date: this.inputDate?.current?.value as string,
+        format: findCheckedRadio,
+        agreement: this.inputCheckbox?.current?.checked.toString() as string,
+        language: this.inputSelect?.current?.value as string,
+        icon: this.inputFile.current?.files?.[0],
+      };
+
+      console.log(isValid(card));
+
+      const { addCard } = this.props;
+      addCard(card);
+    }
   };
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className={styles.form}>
+      <form noValidate onSubmit={this.handleSubmit} className={styles.form}>
         <Text inputRef={this.inputText} LabelText="Name book:" />
         <Text inputRef={this.inputDescription} LabelText="Description:" />
         <Date inputRef={this.inputDate} />
