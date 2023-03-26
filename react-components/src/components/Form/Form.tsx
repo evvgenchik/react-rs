@@ -13,6 +13,8 @@ import validation from '../../utils/validation';
 class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
   formRef = createRef<HTMLFormElement>();
 
+  successMessage = '';
+
   refsArr = {
     inputText: createRef<HTMLInputElement>(),
 
@@ -51,7 +53,6 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
         (input) => input.checked
       ) as HTMLInputElement;
       const fileInput = this.refsArr.inputFile?.current?.files?.[0] as Blob;
-      console.log(fileInput);
       const file = URL.createObjectURL(fileInput);
       const { addCard } = this.props;
 
@@ -63,13 +64,19 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
         language: this.refsArr.inputSelect?.current?.value as string,
         icon: file,
       };
-      console.log(addCard);
 
       addCard(card);
-      console.log('br');
-    }
 
-    this.formRef.current?.reset();
+      this.successMessage = 'Book was added successfully';
+      setTimeout(() => {
+        this.successMessage = '';
+        this.setState((prevState) => ({
+          ...prevState,
+        }));
+      }, 2000);
+
+      this.formRef.current?.reset();
+    }
 
     // this.createObj(this.refsArr);
 
@@ -216,32 +223,42 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
     const { title, date, description, format, agreement, language, icon } =
       this.state;
     return (
-      <form
-        ref={this.formRef}
-        noValidate
-        onSubmit={this.handleSubmit}
-        className={styles.form}
-      >
-        <Text
-          errorMessage={title}
-          inputRef={this.refsArr.inputText}
-          LabelText="Title"
-        />
-        <Text
-          errorMessage={description}
-          inputRef={this.refsArr.inputDescription}
-          LabelText="Description"
-        />
-        <Date errorMessage={date} inputRef={this.refsArr.inputDate} />
-        <Radio errorMessage={format} inputRef={this.refsArr.inputRadio} />
-        <Select errorMessage={language} selectRef={this.refsArr.inputSelect} />
-        <File errorMessage={icon} fileRef={this.refsArr.inputFile} />
-        <Checkbox
-          errorMessage={agreement}
-          inputRef={this.refsArr.inputCheckbox}
-        />
-        <Button handleSubmit={this.handleSubmit} />
-      </form>
+      <div className={styles.formContainer}>
+        <form
+          ref={this.formRef}
+          noValidate
+          onSubmit={this.handleSubmit}
+          className={styles.form}
+        >
+          <Text
+            errorMessage={title}
+            inputRef={this.refsArr.inputText}
+            LabelText="Title"
+          />
+          <Text
+            errorMessage={description}
+            inputRef={this.refsArr.inputDescription}
+            LabelText="Description"
+          />
+          <Date errorMessage={date} inputRef={this.refsArr.inputDate} />
+          <Radio errorMessage={format} inputRef={this.refsArr.inputRadio} />
+          <Select
+            errorMessage={language}
+            selectRef={this.refsArr.inputSelect}
+          />
+          <File errorMessage={icon} fileRef={this.refsArr.inputFile} />
+          <Checkbox
+            errorMessage={agreement}
+            inputRef={this.refsArr.inputCheckbox}
+          />
+          <Button handleSubmit={this.handleSubmit} />
+        </form>
+        {this.successMessage ? (
+          <span className={styles.successMessage}>{this.successMessage}</span>
+        ) : (
+          <span style={{ visibility: 'hidden' }}>Success:</span>
+        )}
+      </div>
     );
   }
 }
