@@ -156,10 +156,12 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
           this.setState({
             agreement: '',
           });
-        else
+        else {
           this.setState({
             agreement: 'Please confirm your agreement',
           });
+          validFlag = false;
+        }
       } else {
         inputHtml = inputHtml as HTMLInputElement;
         const inputName = inputHtml.name;
@@ -180,44 +182,6 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
     });
     return validFlag;
   }
-
-  // createObj = (obj: IRefsArr) => {
-  //   const newObj = {} as ICard;
-  //   const keys = Object.keys(obj);
-  //   const isValid = keys.every((el) => {
-  //     const key = el as keyof IRefsArr;
-  //     let inputHtml = obj[key].current as HTMLInputElement | HTMLInputElement[];
-
-  //     if (key === 'inputRadio' && Array.isArray(inputHtml)) {
-  //       const CheckedInput = inputHtml.find((input) => input.checked);
-  //       if (!CheckedInput) {
-  //         this.setState({ format: 'Please select format' });
-  //         return true;
-  //       }
-  //       inputHtml = CheckedInput;
-  //     } else if (key === 'inputFile') {
-  //       inputHtml = inputHtml as HTMLInputElement;
-  //       const fileInput = inputHtml.files?.[0];
-  //       if (!fileInput) {
-  //         this.setState({ icon: 'Please add icon' });
-  //         return true;
-  //       }
-  //       if (fileInput.type.split('/')[0] === 'image') {
-  //         this.setState({ icon: 'Please add correct image format' });
-  //         return true;
-  //       }
-  //       return true;
-  //     } else inputHtml = inputHtml as HTMLInputElement;
-
-  //     const inputName = inputHtml.name;
-  //     const inputValue = (name = 'file')
-  //       ? URL.createObjectURL(inputHtml.files?.[0])
-  //       : inputHtml.value;
-  //     console.log(inputValue);
-  //     console.log(inputName);
-  //     return true;
-  //   });
-  // };
 
   render() {
     const { title, date, description, format, agreement, language, icon } =

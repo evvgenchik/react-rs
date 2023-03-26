@@ -1,4 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
 import { Component, LegacyRef } from 'react';
 import styles from './Checkbox.module.scss';
 import { IInputTextProps } from '../../../utils/types';
