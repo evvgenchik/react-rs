@@ -3,7 +3,7 @@ import Menu from './Menu/Menu';
 import styles from './header.module.scss';
 import logo from '../../assets/logo.webp';
 import { MyState, WithRouterProps } from '../../utils/types';
-import withRouter from '../WithRouter';
+import withRouter from '../../utils/WithRouter';
 import LocationTitle from './LocationTitle/LocationTitle';
 
 class Header extends React.PureComponent<WithRouterProps, MyState> {

@@ -1,44 +1,60 @@
-import { ICardNoValidate } from './types';
+const validator = (inputHtml: HTMLInputElement | HTMLInputElement[]) => {
+  if (Array.isArray(inputHtml)) {
+    const CheckedInput = inputHtml.find((input) => input.checked);
 
-const validator = {
-  title: (value: string) =>
-    value && value[0].toUpperCase() === value[0]
-      ? ''
-      : 'Name must start with an uppercase letter',
+    if (!CheckedInput) {
+      return 'Please select format';
+    }
+    return '';
+  }
 
-  description: (value: string) =>
-    value && value.split(' ').length >= 3
-      ? ''
-      : 'Description must contain at least three words',
+  const { value } = inputHtml;
 
-  date: (value: string) =>
-    value &&
-    Date.parse(value) &&
-    new Date(value).getTime() <= new Date().getTime()
-      ? ''
-      : 'Date must not be future',
+  switch (inputHtml.name) {
+    case 'title':
+      if (!value || value[0].toUpperCase() !== value[0]) {
+        return 'Name must start with an uppercase letter';
+      }
+      break;
 
-  language: (value: string) => (value ? '' : 'Please select language'),
+    case 'description':
+      if (!value || value.split(' ').length < 3) {
+        return 'Description must contain at least three words';
+      }
+      break;
+
+    case 'date':
+      if (
+        !value ||
+        !Date.parse(value) ||
+        new Date(value).getTime() >= new Date().getTime()
+      ) {
+        return 'Date must not be future';
+      }
+      break;
+
+    case 'language':
+      if (!inputHtml.value) return 'Please select language';
+      break;
+
+    case 'icon': {
+      const fileInput = inputHtml.files?.[0];
+      if (!fileInput) {
+        return 'Please add image';
+      }
+      if (fileInput.type.split('/')[0] !== 'image') {
+        return 'Please add correct image format';
+      }
+      break;
+    }
+
+    case 'agreement':
+      if (!inputHtml.checked) return 'Please confirm your agreement';
+      break;
+    default:
+      return '';
+  }
+  return '';
 };
 
-// const isValid = (obj: ICardNoValidate) => {
-//   let result = true;
-//   const keys = Object.keys(obj);
-
-//   keys.forEach((el) => {
-//     const key = el as keyof ICardNoValidate;
-//     const value = obj[key] as string | undefined;
-//     if (!value || !validator[key](value)) {
-//       result = false;
-//     }
-//   });
-
-//   return result;
-// };
-
-const validation = (key: string, value: string) => {
-  const convertKey = key as keyof ICardNoValidate;
-  return validator[convertKey](value);
-};
-
-export default validation;
+export default validator;

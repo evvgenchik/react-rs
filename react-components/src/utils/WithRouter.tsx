@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { WithRouterProps } from '../utils/types';
+import { WithRouterProps } from './types';
 
 const withRouter = (Component: React.ComponentType<WithRouterProps>) => {
   const ComponentWithRouter = () => {

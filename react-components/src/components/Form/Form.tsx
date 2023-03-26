@@ -8,26 +8,21 @@ import Select from './Select/Select';
 import File from './File/File';
 import Button from './Button/Button';
 import { ICard, IStateForm, IRefsArr } from '../../utils/types';
-import validation from '../../utils/validation';
+import validator from '../../utils/validation';
 
 class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
-  formRef = createRef<HTMLFormElement>();
-
   successMessage = '';
+
+  formRef = createRef<HTMLFormElement>();
 
   refsArr = {
     inputText: createRef<HTMLInputElement>(),
-
     inputDescription: createRef<HTMLInputElement>(),
-
     inputDate: createRef<HTMLInputElement>(),
-
-    inputRadio: createRef<
-      HTMLInputElement[] | null
-    >() as React.MutableRefObject<HTMLInputElement[] | null>,
-    inputCheckbox: createRef<HTMLInputElement>(),
-    inputFile: createRef<HTMLInputElement>(),
+    inputRadio: createRef<HTMLInputElement[] | null>(),
     inputSelect: createRef<HTMLSelectElement>(),
+    inputFile: createRef<HTMLInputElement>(),
+    inputCheckbox: createRef<HTMLInputElement>(),
   };
 
   constructor(props: { addCard: (cards: ICard) => void }) {
@@ -38,72 +33,23 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
       description: '',
       date: '',
       format: '',
-      agreement: '',
       language: '',
       icon: '',
+      agreement: '',
     };
   }
 
   handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const valid = this.isValid(this.refsArr);
 
-    if (valid) {
-      const formatInput = this.refsArr.inputRadio?.current?.find(
-        (input) => input.checked
-      ) as HTMLInputElement;
-      const fileInput = this.refsArr.inputFile?.current?.files?.[0] as Blob;
-      const file = URL.createObjectURL(fileInput);
+    if (this.isValid(this.refsArr)) {
       const { addCard } = this.props;
-
-      const card: ICard = {
-        title: this.refsArr.inputText?.current?.value as string,
-        description: this.refsArr.inputDescription?.current?.value as string,
-        date: this.refsArr.inputDate?.current?.value as string,
-        format: formatInput.value as string,
-        language: this.refsArr.inputSelect?.current?.value as string,
-        icon: file,
-      };
+      const card = this.createObj();
 
       addCard(card);
-
-      this.successMessage = 'Book was added successfully';
-      setTimeout(() => {
-        this.successMessage = '';
-        this.setState((prevState) => ({
-          ...prevState,
-        }));
-      }, 2000);
-
+      this.showSuccessMessage();
       this.formRef.current?.reset();
     }
-
-    // this.createObj(this.refsArr);
-
-    // let findCheckedRadio: string | undefined;
-
-    // if (this.refsArr.inputRadio?.current) {
-    //   const findElem = this.refsArr.inputRadio?.current.find(
-    //     (el) => el.checked
-    //   ) as HTMLInputElement;
-    //   findCheckedRadio = findElem ? findElem.value : undefined;
-
-    //   const card: ICard = {
-    //     name: this.refsArr.inputText?.current?.value as string,
-    //     description: this.refsArr.inputDescription?.current?.value as string,
-    //     date: this.refsArr.inputDate?.current?.value as string,
-    //     format: findCheckedRadio,
-    //     agreement:
-    //       this.refsArr.inputCheckbox?.current?.checked.toString() as string,
-    //     language: this.refsArr.inputSelect?.current?.value as string,
-    //     icon: this.refsArr.inputFile.current?.files?.[0],
-    //   };
-
-    //   console.log(isValid(card));
-
-    //   const { addCard } = this.props;
-    //   addCard(card);
-    // }
   };
 
   isValid(obj: IRefsArr) {
@@ -112,80 +58,61 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
 
     keys.forEach((el) => {
       const key = el as keyof IRefsArr;
-      let inputHtml = obj[key].current as HTMLInputElement | HTMLInputElement[];
+      const inputHtml = obj[key].current as
+        | HTMLInputElement
+        | HTMLInputElement[];
+      const errorMessage = validator(inputHtml);
 
-      if (key === 'inputRadio' && Array.isArray(inputHtml)) {
-        const CheckedInput = inputHtml.find((input) => input.checked);
+      if (errorMessage) validFlag = false;
 
-        if (!CheckedInput) {
-          this.setState({ format: 'Please select format' });
-          validFlag = false;
-          return false;
-        }
+      const keyState = Array.isArray(inputHtml)
+        ? (inputHtml[0].name as keyof IStateForm)
+        : (inputHtml.name as keyof IStateForm);
 
-        this.setState({
-          format: '',
-        });
-        inputHtml = CheckedInput;
-      } else if (key === 'inputFile') {
-        inputHtml = inputHtml as HTMLInputElement;
-        const fileInput = inputHtml.files?.[0];
-
-        if (!fileInput) {
-          this.setState({ icon: 'Please add image' });
-          validFlag = false;
-          return false;
-        }
-
-        if (fileInput.type.split('/')[0] !== 'image') {
-          this.setState({
-            icon: 'Please add correct image format',
-          });
-          validFlag = false;
-          return false;
-        }
-
-        this.setState({
-          icon: '',
-        });
-        return true;
-      } else if (key === 'inputCheckbox') {
-        inputHtml = inputHtml as HTMLInputElement;
-
-        if (inputHtml.checked)
-          this.setState({
-            agreement: '',
-          });
-        else {
-          this.setState({
-            agreement: 'Please confirm your agreement',
-          });
-          validFlag = false;
-        }
-      } else {
-        inputHtml = inputHtml as HTMLInputElement;
-        const inputName = inputHtml.name;
-        const inputValue = inputHtml.value;
-        const errorMessage = validation(inputName, inputValue);
-
-        if (errorMessage) {
-          validFlag = false;
-        }
-        this.setState((prevState) => ({
-          ...prevState,
-          [inputName]: errorMessage,
-        }));
-        return validFlag;
-      }
-
-      return validFlag;
+      this.setState((prevState) => ({
+        ...prevState,
+        ...{ [keyState]: errorMessage },
+      }));
     });
+
     return validFlag;
+  }
+
+  createObj() {
+    const formatInput = this.refsArr.inputRadio?.current?.find(
+      (input) => input.checked
+    ) as HTMLInputElement;
+    const fileInput = this.refsArr.inputFile?.current?.files?.[0] as Blob;
+    const file = URL.createObjectURL(fileInput);
+
+    const card: ICard = {
+      title: this.refsArr.inputText?.current?.value as string,
+      description: this.refsArr.inputDescription?.current?.value as string,
+      date: this.refsArr.inputDate?.current?.value as string,
+      format: formatInput.value as string,
+      language: this.refsArr.inputSelect?.current?.value as string,
+      icon: file,
+    };
+
+    return card;
+  }
+
+  showSuccessMessage() {
+    this.successMessage = 'Book was added successfully';
+
+    setTimeout(() => {
+      this.successMessage = '';
+
+      this.setState((prevState) => ({
+        ...prevState,
+      }));
+    }, 2000);
   }
 
   render() {
     const { title, date, description, format, agreement, language, icon } =
       this.state;
+
     return (
       <div className={styles.formContainer}>
         <form
