@@ -8,6 +8,7 @@ class Radio extends Component<IInputRadioProps> {
 
   render() {
     const { inputRef, errorMessage } = this.props;
+    inputRef.current = [];
 
     return (
       <label className={styles.radio}>
@@ -28,6 +29,7 @@ class Radio extends Component<IInputRadioProps> {
             />
           </label>
         ))}
+        {errorMessage && <span>Error: {errorMessage}</span>}
       </label>
     );
   }

@@ -9,9 +9,9 @@ class Checkbox extends Component<IInputTextProps> {
 
     return (
       <div>
-        <label className={styles.checkbox} htmlFor="consent">
+        <label className={styles.checkbox} htmlFor="agreement">
           Agree with site rules
-          <input ref={inputRef} type="checkbox" name="consent" />
+          <input ref={inputRef} type="checkbox" name="agreement" />
           {errorMessage && <span>Error: {errorMessage}</span>}
         </label>
       </div>

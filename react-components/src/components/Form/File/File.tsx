@@ -5,7 +5,6 @@ import { IInputFileProps } from '../../../utils/types';
 class File extends Component<IInputFileProps> {
   render() {
     const { fileRef, errorMessage } = this.props;
-
     return (
       <label className={styles.file} htmlFor="icon">
         Сover Icon:

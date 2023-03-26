@@ -30,7 +30,7 @@ interface Iroutes {
 }
 
 interface ICard {
-  name: string;
+  title: string;
   description: string;
   date: string;
   agreement: boolean;
@@ -40,13 +40,11 @@ interface ICard {
 }
 
 interface ICardNoValidate {
-  name: string | undefined;
+  title: string | undefined;
   description: string | undefined;
   date: string | undefined;
   agreement: boolean | undefined;
-  format: string | undefined;
   language: string | undefined;
-  icon: string | undefined;
 }
 
 interface IInputTextProps {
@@ -64,18 +62,31 @@ interface IInputFileProps {
 }
 
 interface IInputRadioProps {
-  inputRef: RefObject<HTMLInputElement[] | null>;
+  inputRef: React.MutableRefObject<HTMLInputElement[] | null>;
   errorMessage: string;
 }
 
 interface IStateForm {
-  name: string;
+  title: string;
   description: string;
   date: string;
   format: string;
   agreement: string;
   language: string;
   icon: string;
+}
+
+interface IRefsArr {
+  inputText: RefObject<HTMLInputElement>;
+
+  inputDescription: RefObject<HTMLInputElement>;
+
+  inputDate: RefObject<HTMLInputElement>;
+
+  inputRadio: React.MutableRefObject<HTMLInputElement[] | null>;
+  inputCheckbox: RefObject<HTMLInputElement>;
+  inputFile: RefObject<HTMLInputElement>;
+  inputSelect: RefObject<HTMLSelectElement>;
 }
 
 export type {
@@ -94,4 +105,5 @@ export type {
   IInputFileProps,
   IInputRadioProps,
   IStateForm,
+  IRefsArr,
 };

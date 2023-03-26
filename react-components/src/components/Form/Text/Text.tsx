@@ -8,8 +8,14 @@ class Text extends Component<IInputTextProps> {
 
     return (
       <label htmlFor="name">
-        {LabelText}
-        <input ref={inputRef} className={styles.input} id="name" type="text" />
+        {LabelText}:
+        <input
+          ref={inputRef}
+          className={styles.input}
+          id="name"
+          name={LabelText?.toLowerCase()}
+          type="text"
+        />
         {errorMessage && <span>Error: {errorMessage}</span>}
       </label>
     );
