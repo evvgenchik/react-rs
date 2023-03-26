@@ -14,7 +14,7 @@ const validator = {
   date: (value: string) =>
     value &&
     Date.parse(value) &&
-    new Date(value).getTime() >= new Date().getTime()
+    new Date(value).getTime() <= new Date().getTime()
       ? ''
       : 'Date must not be future',
 

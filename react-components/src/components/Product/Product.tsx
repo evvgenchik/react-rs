@@ -8,9 +8,10 @@ function Product({ book }: { book: ICard }) {
         <img src={book.icon} alt="icon book" />
       </div>
       <span>{book.date}</span>
-      <h2>{book.name}</h2>
-      <h4>Language: {book.language}</h4>
-      <p>Format: </p>
+      <h2>{book.title}</h2>
+      <h4>{book.description}</h4>
+      <p>Language: {book.language}</p>
+      <p>Format: {book.format}</p>
     </li>
   );
 }

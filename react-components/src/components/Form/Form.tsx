@@ -46,13 +46,12 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
     e.preventDefault();
     const valid = this.isValid(this.refsArr);
 
-    this.formRef.current?.reset();
-
     if (valid) {
       const formatInput = this.refsArr.inputRadio?.current?.find(
         (input) => input.checked
       ) as HTMLInputElement;
       const fileInput = this.refsArr.inputFile?.current?.files?.[0] as Blob;
+      console.log(fileInput);
       const file = URL.createObjectURL(fileInput);
       const { addCard } = this.props;
 
@@ -64,9 +63,14 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
         language: this.refsArr.inputSelect?.current?.value as string,
         icon: file,
       };
+      console.log(addCard);
 
       addCard(card);
+      console.log('br');
     }
+
+    this.formRef.current?.reset();
+
     // this.createObj(this.refsArr);
 
     // let findCheckedRadio: string | undefined;
@@ -154,7 +158,8 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
         const inputName = inputHtml.name;
         const inputValue = inputHtml.value;
         const errorMessage = validation(inputName, inputValue);
-        if (!errorMessage) {
+
+        if (errorMessage) {
           validFlag = false;
         }
         this.setState((prevState) => ({
