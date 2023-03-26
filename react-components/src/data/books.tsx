@@ -1,6 +1,6 @@
 const books = [
   {
-    name: 'Snowflake: The Definitive Guide',
+    title: 'Snowflake: The Definitive Guide',
     description:
       'Architecting, Designing, and Deploying on the Snowflake Data Cloud',
     isbn13: '9781098103828',
@@ -13,7 +13,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Python for Data Analysis, 3rd Edition',
+    title: 'Python for Data Analysis, 3rd Edition',
     description: 'Data Wrangling with pandas, NumPy, and Jupyter',
     isbn13: '9781098104030',
     price: '$37.49',
@@ -25,7 +25,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Reliable Machine Learning',
+    title: 'Reliable Machine Learning',
     description: 'Applying SRE Principles to ML in Production',
     isbn13: '9781098106225',
     price: '$43.99',
@@ -37,7 +37,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Data Visualization with Python and JavaScript, 2nd Edition',
+    title: 'Data Visualization with Python and JavaScript, 2nd Edition',
     description: 'Scrape, Clean, Explore, and Transform Your Data',
     isbn13: '9781098111878',
     price: '$60.99',
@@ -49,7 +49,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Learning Microsoft Power BI',
+    title: 'Learning Microsoft Power BI',
     description: 'Transforming Data into Insights',
     isbn13: '9781098112844',
     price: '$41.99',
@@ -61,7 +61,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'C++ Software Design',
+    title: 'C++ Software Design',
     description: 'Design Principles and Patterns for High-Quality Software',
     isbn13: '9781098113162',
     price: '$43.99',
@@ -73,7 +73,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Terraform: Up and Running, 3rd Edition',
+    title: 'Terraform: Up and Running, 3rd Edition',
     description: 'Writing Infrastructure as Code',
     isbn13: '9781098116743',
     price: '$46.99',
@@ -85,7 +85,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Flutter and Dart Cookbook',
+    title: 'Flutter and Dart Cookbook',
     description: 'Developing Full-Stack Applications for the Cloud',
     isbn13: '9781098119515',
     price: '$50.52',
@@ -97,7 +97,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Python Data Science Handbook, 2nd Edition',
+    title: 'Python Data Science Handbook, 2nd Edition',
     description: 'Essential Tools for Working with Data',
     isbn13: '9781098121228',
     price: '$61.23',
@@ -109,7 +109,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Raspberry Pi Cookbook, 4th Edition',
+    title: 'Raspberry Pi Cookbook, 4th Edition',
     description: 'Software and Hardware Problems and Solutions',
     isbn13: '9781098130923',
     price: '$14.99',
@@ -121,7 +121,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Azure Maps Using Blazor Succinctly',
+    title: 'Azure Maps Using Blazor Succinctly',
     description: '',
     isbn13: '9781642002263',
     price: '$0.00',
@@ -133,7 +133,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Full Stack Quarkus and React',
+    title: 'Full Stack Quarkus and React',
     description:
       'Hands-on full stack web development with Java, React, and Kubernetes',
     isbn13: '9781800562738',
@@ -146,7 +146,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Mathematics for Game Programming and Computer Graphics',
+    title: 'Mathematics for Game Programming and Computer Graphics',
     description:
       'Explore the essential mathematics for creating, rendering, and manipulating 3D virtual environments',
     isbn13: '9781801077330',
@@ -159,7 +159,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Architecting and Building High-Speed SoCs',
+    title: 'Architecting and Building High-Speed SoCs',
     description:
       'Design, develop, and debug complex FPGA-based systems-on-chip',
     isbn13: '9781801810999',
@@ -172,7 +172,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Web Development with Julia and Genie',
+    title: 'Web Development with Julia and Genie',
     description:
       'A hands-on guide to high-performance server-side web development with the Julia programming language',
     isbn13: '9781801811132',
@@ -185,7 +185,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Java Memory Management',
+    title: 'Java Memory Management',
     description: 'A comprehensive guide to garbage collection and JVM tuning',
     isbn13: '9781801812856',
     price: '$34.99',
@@ -197,7 +197,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Test-Driven Development with C++',
+    title: 'Test-Driven Development with C++',
     description: 'A simple guide to writing bug-free Agile code',
     isbn13: '9781803242002',
     price: '$44.99',
@@ -209,7 +209,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Software Test Design',
+    title: 'Software Test Design',
     description:
       'Write comprehensive test plans to uncover critical bugs in web, desktop, and mobile apps',
     isbn13: '9781804612569',
@@ -222,7 +222,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Microservices with Go',
+    title: 'Microservices with Go',
     description: 'Building scalable and reliable microservices with Go',
     isbn13: '9781804617007',
     price: '$29.99',
@@ -234,7 +234,7 @@ const books = [
     language: 'Python',
   },
   {
-    name: 'Modern Frontend Development with Node.js',
+    title: 'Modern Frontend Development with Node.js',
     description:
       'A compendium for modern JavaScript web development within the Node.js ecosystem',
     isbn13: '9781804618295',
