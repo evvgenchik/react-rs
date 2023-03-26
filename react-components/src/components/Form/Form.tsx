@@ -95,7 +95,7 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
         const fileInput = inputHtml.files?.[0];
 
         if (!fileInput) {
-          this.setState({ icon: 'Please add icon' });
+          this.setState({ icon: 'Please add image' });
           validFlag = false;
           return false;
         }

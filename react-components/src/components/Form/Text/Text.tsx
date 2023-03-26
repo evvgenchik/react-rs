@@ -16,7 +16,11 @@ class Text extends Component<IInputTextProps> {
           name={LabelText?.toLowerCase()}
           type="text"
         />
-        {errorMessage && <span>Error: {errorMessage}</span>}
+        {errorMessage ? (
+          <span>{errorMessage}</span>
+        ) : (
+          <span style={{ visibility: 'hidden' }}>Error:</span>
+        )}
       </label>
     );
   }

@@ -6,11 +6,17 @@ class File extends Component<IInputFileProps> {
   render() {
     const { fileRef, errorMessage } = this.props;
     return (
-      <label className={styles.file} htmlFor="icon">
-        Сover Icon:
-        <input ref={fileRef} name="icon" type="file" title=" " />
-        {errorMessage && <span>Error: {errorMessage}</span>}
-      </label>
+      <>
+        <label className={styles.file} htmlFor="icon">
+          Сover Icon:
+          <input ref={fileRef} name="icon" type="file" title=" " />
+        </label>
+        {errorMessage ? (
+          <span>{errorMessage}</span>
+        ) : (
+          <span style={{ visibility: 'hidden' }}>Error:</span>
+        )}
+      </>
     );
   }
 }

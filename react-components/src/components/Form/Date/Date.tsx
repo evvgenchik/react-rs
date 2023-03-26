@@ -15,7 +15,11 @@ class Date extends Component<IInputTextProps> {
           name="date"
           type="date"
         />
-        {errorMessage && <span>Error: {errorMessage}</span>}
+        {errorMessage ? (
+          <span>{errorMessage}</span>
+        ) : (
+          <span style={{ visibility: 'hidden' }}>Error:</span>
+        )}
       </label>
     );
   }

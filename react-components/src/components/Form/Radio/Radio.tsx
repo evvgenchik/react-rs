@@ -11,26 +11,32 @@ class Radio extends Component<IInputRadioProps> {
     inputRef.current = [];
 
     return (
-      <label className={styles.radio}>
-        Format:
-        {this.inputs.map((item, i) => (
-          <label key={uuidv4()}>
-            {item}
-            <input
-              key={uuidv4()}
-              ref={(el) => {
-                if (el && inputRef && inputRef.current) {
-                  inputRef.current[i] = el as HTMLInputElement;
-                }
-              }}
-              name="format"
-              value={item}
-              type="radio"
-            />
-          </label>
-        ))}
-        {errorMessage && <span>Error: {errorMessage}</span>}
-      </label>
+      <>
+        <label className={styles.radio}>
+          Format:
+          {this.inputs.map((item, i) => (
+            <label key={uuidv4()}>
+              {item}
+              <input
+                key={uuidv4()}
+                ref={(el) => {
+                  if (el && inputRef && inputRef.current) {
+                    inputRef.current[i] = el as HTMLInputElement;
+                  }
+                }}
+                name="format"
+                value={item}
+                type="radio"
+              />
+            </label>
+          ))}
+        </label>
+        {errorMessage ? (
+          <span>{errorMessage}</span>
+        ) : (
+          <span style={{ visibility: 'hidden' }}>Error:</span>
+        )}
+      </>
     );
   }
 }
