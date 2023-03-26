@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { LegacyRef, MutableRefObject, RefObject } from 'react';
+import { RefObject } from 'react';
 
 interface IBook {
   title: string;
@@ -33,7 +33,6 @@ interface ICard {
   title: string;
   description: string;
   date: string;
-  agreement: boolean;
   format: string;
   language: string;
   icon: string;
@@ -43,21 +42,20 @@ interface ICardNoValidate {
   title: string | undefined;
   description: string | undefined;
   date: string | undefined;
-  agreement: boolean | undefined;
   language: string | undefined;
 }
 
 interface IInputTextProps {
-  inputRef: LegacyRef<HTMLInputElement>;
+  inputRef: RefObject<HTMLInputElement>;
   LabelText?: string;
   errorMessage: string;
 }
 interface IInputSelectProps {
-  selectRef: LegacyRef<HTMLSelectElement>;
+  selectRef: RefObject<HTMLSelectElement>;
   errorMessage: string;
 }
 interface IInputFileProps {
-  fileRef: LegacyRef<HTMLInputElement>;
+  fileRef: RefObject<HTMLInputElement>;
   errorMessage: string;
 }
 

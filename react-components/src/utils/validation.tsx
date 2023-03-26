@@ -18,9 +18,6 @@ const validator = {
       ? ''
       : 'Date must not be future',
 
-  agreement: (value: string) =>
-    value && value === 'true' ? '' : 'Please confirm your agreement',
-
   language: (value: string) => (value ? '' : 'Please select language'),
 };
 

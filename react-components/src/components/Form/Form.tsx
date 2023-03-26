@@ -44,10 +44,29 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
 
   handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log(this.isValid(this.refsArr));
-    this.formRef.current?.reset();
-    console.log(this.state);
+    const valid = this.isValid(this.refsArr);
 
+    this.formRef.current?.reset();
+
+    if (valid) {
+      const formatInput = this.refsArr.inputRadio?.current?.find(
+        (input) => input.checked
+      ) as HTMLInputElement;
+      const fileInput = this.refsArr.inputFile?.current?.files?.[0] as Blob;
+      const file = URL.createObjectURL(fileInput);
+      const { addCard } = this.props;
+
+      const card: ICard = {
+        title: this.refsArr.inputText?.current?.value as string,
+        description: this.refsArr.inputDescription?.current?.value as string,
+        date: this.refsArr.inputDate?.current?.value as string,
+        format: formatInput.value as string,
+        language: this.refsArr.inputSelect?.current?.value as string,
+        icon: file,
+      };
+
+      addCard(card);
+    }
     // this.createObj(this.refsArr);
 
     // let findCheckedRadio: string | undefined;
@@ -94,7 +113,7 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
         }
 
         this.setState({
-          icon: '',
+          format: '',
         });
         inputHtml = CheckedInput;
       } else if (key === 'inputFile') {
@@ -119,6 +138,17 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
           icon: '',
         });
         return true;
+      } else if (key === 'inputCheckbox') {
+        inputHtml = inputHtml as HTMLInputElement;
+
+        if (inputHtml.checked)
+          this.setState({
+            agreement: '',
+          });
+        else
+          this.setState({
+            agreement: 'Please confirm your agreement',
+          });
       } else {
         inputHtml = inputHtml as HTMLInputElement;
         const inputName = inputHtml.name;
@@ -136,6 +166,7 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
 
       return validFlag;
     });
+    return validFlag;
   }
 
   // createObj = (obj: IRefsArr) => {
