@@ -3,25 +3,25 @@ import { ICardNoValidate } from './types';
 const validator = {
   title: (value: string) =>
     value && value[0].toUpperCase() === value[0]
-      ? false
+      ? ''
       : 'Name must start with an uppercase letter',
 
   description: (value: string) =>
     value && value.split(' ').length >= 3
-      ? false
+      ? ''
       : 'Description must contain at least three words',
 
   date: (value: string) =>
     value &&
     Date.parse(value) &&
     new Date(value).getTime() >= new Date().getTime()
-      ? false
+      ? ''
       : 'Date must not be future',
 
   agreement: (value: string) =>
-    value && value === 'true' ? false : 'Please confirm your agreement',
+    value && value === 'true' ? '' : 'Please confirm your agreement',
 
-  language: (value: string) => (value ? false : 'Please select language'),
+  language: (value: string) => (value ? '' : 'Please select language'),
 };
 
 // const isValid = (obj: ICardNoValidate) => {

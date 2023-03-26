@@ -11,6 +11,8 @@ import { ICard, IStateForm, IRefsArr } from '../../utils/types';
 import validation from '../../utils/validation';
 
 class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
+  formRef = createRef<HTMLFormElement>();
+
   refsArr = {
     inputText: createRef<HTMLInputElement>(),
 
@@ -43,6 +45,8 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
   handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     console.log(this.isValid(this.refsArr));
+    this.formRef.current?.reset();
+    console.log(this.state);
 
     // this.createObj(this.refsArr);
 
@@ -76,7 +80,7 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
     const keys = Object.keys(obj);
     let validFlag = true;
 
-    return keys.forEach((el) => {
+    keys.forEach((el) => {
       const key = el as keyof IRefsArr;
       let inputHtml = obj[key].current as HTMLInputElement | HTMLInputElement[];
 
@@ -89,6 +93,9 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
           return false;
         }
 
+        this.setState({
+          icon: '',
+        });
         inputHtml = CheckedInput;
       } else if (key === 'inputFile') {
         inputHtml = inputHtml as HTMLInputElement;
@@ -108,20 +115,23 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
           return false;
         }
 
+        this.setState({
+          icon: '',
+        });
         return true;
       } else {
         inputHtml = inputHtml as HTMLInputElement;
         const inputName = inputHtml.name;
         const inputValue = inputHtml.value;
         const errorMessage = validation(inputName, inputValue);
-        if (errorMessage) {
-          this.setState((prevState) => ({
-            ...prevState,
-            [inputName]: errorMessage,
-          }));
+        if (!errorMessage) {
           validFlag = false;
-          return false;
         }
+        this.setState((prevState) => ({
+          ...prevState,
+          [inputName]: errorMessage,
+        }));
+        return validFlag;
       }
 
       return validFlag;
@@ -170,7 +180,12 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
     const { title, date, description, format, agreement, language, icon } =
       this.state;
     return (
-      <form noValidate onSubmit={this.handleSubmit} className={styles.form}>
+      <form
+        ref={this.formRef}
+        noValidate
+        onSubmit={this.handleSubmit}
+        className={styles.form}
+      >
         <Text
           errorMessage={title}
           inputRef={this.refsArr.inputText}
