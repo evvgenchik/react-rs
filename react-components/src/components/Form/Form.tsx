@@ -84,7 +84,6 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
       (input) => input.checked
     ) as HTMLInputElement;
     const fileInput = this.refsArr.inputFile?.current?.files?.[0] as Blob;
-    console.log(fileInput);
     const file = URL.createObjectURL(fileInput);
 
     const card: ICard = {
