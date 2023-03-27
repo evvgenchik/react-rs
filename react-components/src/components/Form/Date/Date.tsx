@@ -14,6 +14,7 @@ class Date extends Component<IInputTextProps> {
           className={styles.input}
           name="date"
           type="date"
+          data-testid="input-date"
         />
         {errorMessage ? (
           <span>{errorMessage}</span>

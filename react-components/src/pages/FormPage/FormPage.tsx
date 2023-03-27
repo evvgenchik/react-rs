@@ -18,10 +18,10 @@ class FormPage extends Component<object, { cards: ICard[] }> {
   render() {
     const { cards } = this.state;
     return (
-      <>
+      <div>
         <Form addCard={(card: ICard) => this.addCard(card)} />
         {cards.length > 0 && <CardList cards={cards} />}
-      </>
+      </div>
     );
   }
 }

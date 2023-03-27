@@ -41,8 +41,9 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
 
   handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    const isValid = this.isValid(this.refsArr);
 
-    if (this.isValid(this.refsArr)) {
+    if (isValid) {
       const { addCard } = this.props;
       const card = this.createObj();
 
@@ -83,6 +84,7 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
       (input) => input.checked
     ) as HTMLInputElement;
     const fileInput = this.refsArr.inputFile?.current?.files?.[0] as Blob;
+    console.log(fileInput);
     const file = URL.createObjectURL(fileInput);
 
     const card: ICard = {
@@ -116,6 +118,7 @@ class Form extends Component<{ addCard: (cards: ICard) => void }, IStateForm> {
     return (
       <div className={styles.formContainer}>
         <form
+          data-testid="formAddCard"
           ref={this.formRef}
           noValidate
           onSubmit={this.handleSubmit}
