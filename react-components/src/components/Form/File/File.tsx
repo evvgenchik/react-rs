@@ -7,9 +7,14 @@ class File extends Component<IInputFileProps> {
     const { fileRef, errorMessage } = this.props;
     return (
       <>
-        <label data-testid="input-file" className={styles.file} htmlFor="icon">
+        <label className={styles.file} htmlFor="icon">
           Сover Icon:
-          <input ref={fileRef} name="icon" type="file" />
+          <input
+            data-testid="input-file"
+            ref={fileRef}
+            name="icon"
+            type="file"
+          />
         </label>
         {errorMessage ? (
           <span>{errorMessage}</span>
