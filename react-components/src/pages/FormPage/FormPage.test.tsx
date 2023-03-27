@@ -12,9 +12,7 @@ const fillForm = async () => {
   const date = screen.getByTestId('input-date');
   const icon = screen.getByTestId('input-file');
   const agreement = screen.getByRole('checkbox');
-  const mockFile = new File(['JS'], 'book.png', {
-    type: 'image/png',
-  });
+  const mockFile = new File(['JS'], 'book.png', { type: 'image/png' });
   const dateExample = '2022-09-09';
 
   await waitFor(async () => {
@@ -24,9 +22,7 @@ const fillForm = async () => {
     await userEvent.type(date, dateExample);
     await userEvent.click(format[0]);
     await userEvent.click(agreement);
-    fireEvent.change(icon, {
-      target: { files: [mockFile] },
-    });
+    await userEvent.upload(icon, mockFile);
   });
 };
 
