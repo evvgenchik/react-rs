@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "test:ui": "vitest  --ui"
+    "test:ui": "vitest  --ui",
+    "lint": "eslint . --ext .tsx --ext .ts",
+    "lint-fix": "eslint . --ext .tsx --ext .ts --fix"
   },
   "dependencies": {
     "prop-types": "^15.8.1",

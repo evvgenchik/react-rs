@@ -1,4 +1,4 @@
-import { Component, LegacyRef } from 'react';
+import { Component } from 'react';
 import styles from './File.module.scss';
 import { IInputFileProps } from '../../../utils/types';
 

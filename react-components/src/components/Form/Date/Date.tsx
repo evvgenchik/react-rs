@@ -1,4 +1,4 @@
-import { Component, LegacyRef } from 'react';
+import { Component } from 'react';
 import styles from './Date.module.scss';
 import { IInputTextProps } from '../../../utils/types';
 
