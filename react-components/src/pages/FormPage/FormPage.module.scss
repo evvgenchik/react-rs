@@ -1,0 +1,13 @@
+.list {
+  margin-top: 20rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300rem, 1fr));
+  gap: 30rem;
+}
+
+@media (max-width:620px) {
+  .search {
+    transform: translate(0, 0);
+    width: 200rem;
+  }
+}
