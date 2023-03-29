@@ -1,29 +1,28 @@
-import { Component } from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+import { Component, FC } from 'react';
 import { IInputTextProps } from '../../../utils/types';
 import styles from './Text.module.scss';
 
-class Text extends Component<IInputTextProps> {
-  render() {
-    const { LabelText, inputRef, errorMessage } = this.props;
+const Text: FC<IInputTextProps> = (props) => {
+  const { LabelText, inputRef, errorMessage } = props;
 
-    return (
-      <label htmlFor="name">
-        {LabelText}:
-        <input
-          ref={inputRef}
-          className={styles.input}
-          id="name"
-          name={LabelText?.toLowerCase()}
-          type="text"
-        />
-        {errorMessage ? (
-          <span>{errorMessage}</span>
-        ) : (
-          <span style={{ visibility: 'hidden' }}>Error:</span>
-        )}
-      </label>
-    );
-  }
-}
+  return (
+    <label htmlFor="name">
+      {LabelText}:
+      <input
+        {...inputRef('title', { required: 'Name is require' })}
+        className={styles.input}
+        id="name"
+        name={LabelText?.toLowerCase()}
+        type="text"
+      />
+      {errorMessage ? (
+        <span>{errorMessage.message}</span>
+      ) : (
+        <span style={{ visibility: 'hidden' }}>Error:</span>
+      )}
+    </label>
+  );
+};
 
 export default Text;

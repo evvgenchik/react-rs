@@ -1,5 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { RefObject } from 'react';
+import { FieldValues, UseFormRegister } from 'react-hook-form/dist/types';
+import { FieldError, FieldErrors } from 'react-hook-form/dist/types/errors';
 
 interface IBook {
   title: string;
@@ -46,9 +48,9 @@ interface ICardNoValidate {
 }
 
 interface IInputTextProps {
-  inputRef: RefObject<HTMLInputElement>;
+  inputRef: UseFormRegister<IFormValues>;
   LabelText?: string;
-  errorMessage: string;
+  errorMessage?: FieldError;
 }
 interface IInputSelectProps {
   selectRef: RefObject<HTMLSelectElement>;
@@ -65,6 +67,15 @@ interface IInputRadioProps {
 }
 
 interface IStateForm {
+  title: string;
+  description: string;
+  date: string;
+  format: string;
+  agreement: string;
+  language: string;
+  icon: string;
+}
+interface IFormValues {
   title: string;
   description: string;
   date: string;
@@ -104,4 +115,5 @@ export type {
   IInputRadioProps,
   IStateForm,
   IRefsArr,
+  IFormValues,
 };
