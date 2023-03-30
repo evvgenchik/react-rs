@@ -1,29 +1,35 @@
-import { Component } from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+import { FC } from 'react';
 import styles from './Date.module.scss';
-import { IInputTextProps } from '../../../utils/types';
+import { IFormValues, IInputTextProps, IValidator } from '../../../utils/types';
+import validator from '../../../utils/validation';
 
-class Date extends Component<IInputTextProps> {
-  render() {
-    const { inputRef, errorMessage } = this.props;
+const Date: FC<IInputTextProps> = (props) => {
+  const { LabelText, inputRef, errorMessage } = props;
+  const name = LabelText?.toLowerCase() as keyof IFormValues;
+  const validatorProperty = name as keyof IValidator;
 
-    return (
-      <label htmlFor="date">
-        Date:
-        <input
-          ref={inputRef}
-          className={styles.input}
-          name="date"
-          type="date"
-          data-testid="input-date"
-        />
-        {errorMessage ? (
-          <span>{errorMessage}</span>
-        ) : (
-          <span style={{ visibility: 'hidden' }}>Error:</span>
-        )}
-      </label>
-    );
-  }
-}
+  return (
+    <label htmlFor="date">
+      Date:
+      <input
+        {...inputRef(name, {
+          required: `${LabelText} is require`,
+          validate: validator[validatorProperty],
+        })}
+        className={styles.input}
+        id={name}
+        name={name}
+        type="date"
+        data-testid="input-date"
+      />
+      {errorMessage ? (
+        <span>{errorMessage.message}</span>
+      ) : (
+        <span style={{ visibility: 'hidden' }}>Error:</span>
+      )}
+    </label>
+  );
+};
 
 export default Date;

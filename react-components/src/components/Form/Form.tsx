@@ -48,7 +48,7 @@ const Form: FC = () => {
   // }
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
+    console.log('data');
     reset();
   });
 
@@ -64,19 +64,27 @@ const Form: FC = () => {
           errorMessage={errors.title}
           inputRef={register}
           LabelText="Title"
+          type="text"
         />
-        {/* <Text
+        <Text
           errorMessage={errors.description}
           inputRef={register}
           LabelText="Description"
-        /> */}
+          type="text"
+        />
+        <Text
+          errorMessage={errors.date}
+          inputRef={register}
+          LabelText="Date"
+          type="date"
+        />
+        <Radio errorMessage={errors.format} inputref={register} />
         {/*
-        <Date errorMessage={date} ref={register} />
-        <Radio errorMessage={format} ref={register} />
         <Select errorMessage={language} ref={register} />
         <File errorMessage={icon} ref={register} />
         <Checkbox errorMessage={agreement} ref={register} />
-        <Button handleSubmit={this.handleSubmit} /> */}
+        */}
+        <Button handleSubmit={onSubmit} />
       </form>
       {/* {this.successMessage ? (
         <span className={styles.successMessage}>{this.successMessage}</span>

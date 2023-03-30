@@ -7,6 +7,18 @@ const validator: IValidator = {
       'Name must start with an uppercase letter'
     );
   },
+  description(value: string) {
+    return (
+      value.split(' ').length >= 3 ||
+      'Description must contain at least three words'
+    );
+  },
+  date(value: string) {
+    return (
+      (Date.parse(value) && new Date(value).getTime() < new Date().getTime()) ||
+      'Date must not be future'
+    );
+  },
 };
 
 // const validator = (inputHtml: HTMLInputElement | HTMLInputElement[]) => {

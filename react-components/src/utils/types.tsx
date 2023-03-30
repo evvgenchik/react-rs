@@ -51,6 +51,7 @@ interface IInputTextProps {
   inputRef: UseFormRegister<IFormValues>;
   LabelText?: string;
   errorMessage?: FieldError;
+  type: string;
 }
 interface IInputSelectProps {
   selectRef: RefObject<HTMLSelectElement>;
@@ -100,6 +101,8 @@ interface IRefsArr {
 
 interface IValidator {
   title: (value: string) => boolean | string;
+  description: (value: string) => boolean | string;
+  date: (value: string) => boolean | string;
 }
 
 export type {

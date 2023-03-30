@@ -5,22 +5,22 @@ import styles from './Text.module.scss';
 import validator from '../../../utils/validation';
 
 const Text: FC<IInputTextProps> = (props) => {
-  const { LabelText, inputRef, errorMessage } = props;
+  const { LabelText, inputRef, errorMessage, type } = props;
   const name = LabelText?.toLowerCase() as keyof IFormValues;
   const validatorProperty = name as keyof IValidator;
 
   return (
-    <label htmlFor="name">
+    <label htmlFor={name}>
       {LabelText}:
       <input
         {...inputRef(name, {
-          required: 'Name is require',
+          required: `${LabelText} is require`,
           validate: validator[validatorProperty],
         })}
         className={styles.input}
-        id="name"
+        id={name}
         name={name}
-        type="text"
+        type={type}
       />
       {errorMessage ? (
         <span>{errorMessage.message}</span>
