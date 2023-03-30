@@ -1,0 +1,33 @@
+.input[type=text] {
+  width: 100%;
+  border-radius: 10rem;
+  padding: 5rem 10rem;
+  margin-top: 5rem;
+}
+
+.agreement {
+  display: flex;
+  justify-content: center;
+  gap: 15rem;
+  margin-bottom: 10rem;
+}
+
+.input[type=date] {
+  width: 100%;
+  border-radius: 10rem;
+  padding: 5rem 10rem;
+  margin-top: 5rem;
+}
+
+.icon {
+  border: 1rem solid lightgray;
+  border-radius: 20rem;
+  padding: 10rem 15rem;
+  margin-bottom: 10rem;
+}
+
+.input[type=file] {
+  color: transparent;
+  transform: translate(23%, 0);
+  margin-top: 5rem;
+}

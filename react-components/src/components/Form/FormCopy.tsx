@@ -1,6 +1,6 @@
 import { Component, createRef, FC, FormEvent } from 'react';
 import styles from './form.module.scss';
-import Text from './Text/Text';
+import Text from './InputCustom/InputCustom';
 import Checkbox from './Checkbox/Checkbox';
 import Date from './Date/Date';
 import Radio from './Radio/Radio';

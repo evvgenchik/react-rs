@@ -2,7 +2,7 @@
 import { Component, createRef, FC, FormEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './form.module.scss';
-import Text from './Text/Text';
+import InputCustom from './InputCustom/InputCustom';
 import Checkbox from './Checkbox/Checkbox';
 import Date from './Date/Date';
 import Radio from './Radio/Radio';
@@ -60,31 +60,47 @@ const Form: FC = () => {
         onSubmit={onSubmit}
         className={styles.form}
       >
-        <Text
+        <InputCustom
           errorMessage={errors.title}
           inputRef={register}
           LabelText="Title"
           type="text"
         />
-        <Text
+        <InputCustom
           errorMessage={errors.description}
           inputRef={register}
           LabelText="Description"
           type="text"
         />
-        <Text
+        <InputCustom
           errorMessage={errors.date}
           inputRef={register}
           LabelText="Date"
           type="date"
         />
-        <Radio errorMessage={errors.format} inputref={register} />
-        {/*
-        <Select errorMessage={language} ref={register} />
-        <File errorMessage={icon} ref={register} />
-        <Checkbox errorMessage={agreement} ref={register} />
-        */}
-        <Button handleSubmit={onSubmit} />
+        <Radio
+          errorMessage={errors.format}
+          LabelText="Format"
+          inputRef={register}
+        />
+        <Select
+          errorMessage={errors.language}
+          inputRef={register}
+          LabelText="Language"
+        />
+        <InputCustom
+          errorMessage={errors.icon}
+          inputRef={register}
+          LabelText="Icon"
+          type="file"
+        />
+        <InputCustom
+          errorMessage={errors.agreement}
+          inputRef={register}
+          LabelText="Agreement"
+          type="checkbox"
+        />
+        <Button onSubmit={onSubmit} />
       </form>
       {/* {this.successMessage ? (
         <span className={styles.successMessage}>{this.successMessage}</span>
@@ -241,11 +257,3 @@ const Form: FC = () => {
 // }
 
 export default Form;
-function inputRef(
-  arg0: string,
-  arg1: { required: string }
-): JSX.IntrinsicAttributes &
-  import('react').ClassAttributes<HTMLInputElement> &
-  import('react').InputHTMLAttributes<HTMLInputElement> {
-  throw new Error('Function not implemented.');
-}

@@ -1,43 +1,50 @@
-import { Component } from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+import { FC } from 'react';
 import styles from './Radio.module.scss';
-import { IInputRadioProps } from '../../../utils/types';
+import {
+  IInputRadioProps,
+  IFormValues,
+  IValidator,
+} from '../../../utils/types';
+import validator from '../../../utils/validation';
 
-class Radio extends Component<IInputRadioProps> {
-  inputs = ['PDF', 'TXT'];
+const Radio: FC<IInputRadioProps> = (props) => {
+  const { inputRef, errorMessage, LabelText } = props;
+  const name = LabelText?.toLowerCase() as keyof IFormValues;
+  const validatorProperty = name as keyof IValidator;
+  const inputs = ['PDF', 'TXT'];
 
-  render() {
-    const { inputRef, errorMessage } = this.props;
-    inputRef.current = [];
-
-    return (
-      <>
-        <label className={styles.radio}>
-          Format:
-          {this.inputs.map((item, i) => (
-            <label key={item}>
-              {item}
-              <input
-                key={item}
-                ref={(el) => {
-                  if (el && inputRef && inputRef.current) {
-                    inputRef.current[i] = el as HTMLInputElement;
-                  }
-                }}
-                name="format"
-                value={item}
-                type="radio"
-              />
-            </label>
-          ))}
-        </label>
-        {errorMessage ? (
-          <span>{errorMessage}</span>
-        ) : (
-          <span style={{ visibility: 'hidden' }}>Error:</span>
-        )}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <label className={styles.radio}>
+        {LabelText}:
+        {inputs.map((item, i) => (
+          <label key={item}>
+            {item}
+            <input
+              key={item}
+              {...inputRef(name, {
+                required: `${LabelText} is require`,
+              })}
+              // ref={(el) => {
+              //   if (el && inputRef && inputRef.current) {
+              //     inputRef.current[i] = el as HTMLInputElement;
+              //   }
+              // }}
+              name="format"
+              value={item}
+              type="radio"
+            />
+          </label>
+        ))}
+      </label>
+      {errorMessage ? (
+        <span>{errorMessage.message}</span>
+      ) : (
+        <span style={{ visibility: 'hidden' }}>Error:</span>
+      )}
+    </>
+  );
+};
 
 export default Radio;

@@ -51,7 +51,7 @@ interface IInputTextProps {
   inputRef: UseFormRegister<IFormValues>;
   LabelText?: string;
   errorMessage?: FieldError;
-  type: string;
+  type?: string;
 }
 interface IInputSelectProps {
   selectRef: RefObject<HTMLSelectElement>;
@@ -63,8 +63,9 @@ interface IInputFileProps {
 }
 
 interface IInputRadioProps {
-  inputRef: React.MutableRefObject<HTMLInputElement[] | null>;
-  errorMessage: string;
+  inputRef: UseFormRegister<IFormValues>;
+  errorMessage?: FieldError;
+  LabelText?: string;
 }
 
 interface IStateForm {
@@ -103,6 +104,7 @@ interface IValidator {
   title: (value: string) => boolean | string;
   description: (value: string) => boolean | string;
   date: (value: string) => boolean | string;
+  agreement: (value: string) => boolean | string;
 }
 
 export type {

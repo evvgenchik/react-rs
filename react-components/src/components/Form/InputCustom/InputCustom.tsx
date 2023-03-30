@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { FC } from 'react';
 import { IInputTextProps, IFormValues, IValidator } from '../../../utils/types';
-import styles from './Text.module.scss';
+import styles from './InputCustom.module.scss';
 import validator from '../../../utils/validation';
 
 const Text: FC<IInputTextProps> = (props) => {
@@ -10,7 +10,7 @@ const Text: FC<IInputTextProps> = (props) => {
   const validatorProperty = name as keyof IValidator;
 
   return (
-    <label htmlFor={name}>
+    <label htmlFor={name} className={styles[name]}>
       {LabelText}:
       <input
         {...inputRef(name, {

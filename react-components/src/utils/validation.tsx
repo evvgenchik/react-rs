@@ -19,6 +19,9 @@ const validator: IValidator = {
       'Date must not be future'
     );
   },
+  agreement(value: string) {
+    return value || 'Please confirm the agreement';
+  },
 };
 
 // const validator = (inputHtml: HTMLInputElement | HTMLInputElement[]) => {
