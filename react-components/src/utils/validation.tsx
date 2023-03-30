@@ -19,6 +19,12 @@ const validator: IValidator = {
       'Date must not be future'
     );
   },
+  icon(value: FileList | string) {
+    return (
+      (typeof value !== 'string' && value[0].type.split('/')[0] === 'image') ||
+      'Please add correct image format'
+    );
+  },
   agreement(value: string) {
     return value || 'Please confirm the agreement';
   },

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { Component, createRef, FC, FormEvent } from 'react';
+import { Component, createRef, FC, FormEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './form.module.scss';
 import InputCustom from './InputCustom/InputCustom';
@@ -12,7 +12,7 @@ import Button from './Button/Button';
 import { ICard, IStateForm, IRefsArr, IFormValues } from '../../utils/types';
 import validator from '../../utils/validation';
 
-const Form: FC = () => {
+const Form: FC<{ addCard: (cards: ICard) => void }> = (props) => {
   const {
     register,
     handleSubmit,
@@ -22,33 +22,27 @@ const Form: FC = () => {
     mode: 'onSubmit',
   });
 
-  // successMessage = '';
+  const [successMessage, setSuccessMessage] = useState('');
+  const { addCard } = props;
 
-  // formRef = createRef<HTMLFormElement>();
-
-  // refsArr = {
-  //   inputText: createRef<HTMLInputElement>(),
-  //   inputDescription: createRef<HTMLInputElement>(),
-  //   inputDate: createRef<HTMLInputElement>(),
-  //   inputRadio: createRef<HTMLInputElement[] | null>(),
-  //   inputSelect: createRef<HTMLSelectElement>(),
-  //   inputFile: createRef<HTMLInputElement>(),
-  //   inputCheckbox: createRef<HTMLInputElement>(),
-  // };
-
-  const state = {
-    title: '',
-    description: '',
-    date: '',
-    format: '',
-    language: '',
-    icon: '',
-    agreement: '',
+  const showSuccessMessage = () => {
+    setSuccessMessage('Book was added successfully');
+    setTimeout(() => {
+      setSuccessMessage('');
+    }, 2000);
   };
-  // }
+
+  const convertFile = (data: IFormValues) => {
+    const inputValueBlob = new Blob([data.icon[0]]);
+    const file = URL.createObjectURL(inputValueBlob);
+    Object.assign(data, { icon: file });
+    return data;
+  };
 
   const onSubmit = handleSubmit((data) => {
-    console.log('data');
+    showSuccessMessage();
+    const newCard = convertFile(data) as ICard;
+    addCard(newCard);
     reset();
   });
 
@@ -102,11 +96,11 @@ const Form: FC = () => {
         />
         <Button onSubmit={onSubmit} />
       </form>
-      {/* {this.successMessage ? (
-        <span className={styles.successMessage}>{this.successMessage}</span>
+      {successMessage ? (
+        <span className={styles.successMessage}>{successMessage}</span>
       ) : (
         <span style={{ visibility: 'hidden' }}>Success:</span>
-      )} */}
+      )}
     </div>
   );
 };
@@ -198,17 +192,17 @@ const Form: FC = () => {
 //     return card;
 //   }
 
-//   showSuccessMessage() {
-//     this.successMessage = 'Book was added successfully';
+// showSuccessMessage() {
+//   this.successMessage = 'Book was added successfully';
 
-//     setTimeout(() => {
-//       this.successMessage = '';
+//   setTimeout(() => {
+//     this.successMessage = '';
 
-//       this.setState((prevState) => ({
-//         ...prevState,
-//       }));
-//     }, 2000);
-//   }
+//     this.setState((prevState) => ({
+//       ...prevState,
+//     }));
+//   }, 2000);
+// }
 
 //   render() {
 //     const { title, date, description, format, agreement, language, icon } =

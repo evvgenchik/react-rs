@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { RefObject } from 'react';
-import { FieldValues, UseFormRegister } from 'react-hook-form/dist/types';
-import { FieldError, FieldErrors } from 'react-hook-form/dist/types/errors';
+import { UseFormRegister } from 'react-hook-form/dist/types';
+import { FieldError } from 'react-hook-form/dist/types/errors';
 
 interface IBook {
   title: string;
@@ -89,11 +89,8 @@ interface IFormValues {
 
 interface IRefsArr {
   inputText: RefObject<HTMLInputElement>;
-
   inputDescription: RefObject<HTMLInputElement>;
-
   inputDate: RefObject<HTMLInputElement>;
-
   inputRadio: React.MutableRefObject<HTMLInputElement[] | null>;
   inputCheckbox: RefObject<HTMLInputElement>;
   inputFile: RefObject<HTMLInputElement>;
@@ -105,6 +102,7 @@ interface IValidator {
   description: (value: string) => boolean | string;
   date: (value: string) => boolean | string;
   agreement: (value: string) => boolean | string;
+  icon: (value: FileList | string) => boolean | string;
 }
 
 export type {
