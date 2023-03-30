@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { Component, createRef, FC, FormEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './form.module.scss';
@@ -64,11 +65,11 @@ const Form: FC = () => {
           inputRef={register}
           LabelText="Title"
         />
-        <Text
+        {/* <Text
           errorMessage={errors.description}
           inputRef={register}
           LabelText="Description"
-        />
+        /> */}
         {/*
         <Date errorMessage={date} ref={register} />
         <Radio errorMessage={format} ref={register} />
@@ -232,3 +233,11 @@ const Form: FC = () => {
 // }
 
 export default Form;
+function inputRef(
+  arg0: string,
+  arg1: { required: string }
+): JSX.IntrinsicAttributes &
+  import('react').ClassAttributes<HTMLInputElement> &
+  import('react').InputHTMLAttributes<HTMLInputElement> {
+  throw new Error('Function not implemented.');
+}

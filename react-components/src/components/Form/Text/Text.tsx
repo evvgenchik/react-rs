@@ -1,19 +1,25 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { Component, FC } from 'react';
-import { IInputTextProps } from '../../../utils/types';
+import { FC } from 'react';
+import { IInputTextProps, IFormValues, IValidator } from '../../../utils/types';
 import styles from './Text.module.scss';
+import validator from '../../../utils/validation';
 
 const Text: FC<IInputTextProps> = (props) => {
   const { LabelText, inputRef, errorMessage } = props;
+  const name = LabelText?.toLowerCase() as keyof IFormValues;
+  const validatorProperty = name as keyof IValidator;
 
   return (
     <label htmlFor="name">
       {LabelText}:
       <input
-        {...inputRef('title', { required: 'Name is require' })}
+        {...inputRef(name, {
+          required: 'Name is require',
+          validate: validator[validatorProperty],
+        })}
         className={styles.input}
         id="name"
-        name={LabelText?.toLowerCase()}
+        name={name}
         type="text"
       />
       {errorMessage ? (

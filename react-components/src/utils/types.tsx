@@ -98,6 +98,10 @@ interface IRefsArr {
   inputSelect: RefObject<HTMLSelectElement>;
 }
 
+interface IValidator {
+  title: (value: string) => boolean | string;
+}
+
 export type {
   IBook,
   Books,
@@ -116,4 +120,5 @@ export type {
   IStateForm,
   IRefsArr,
   IFormValues,
+  IValidator,
 };
