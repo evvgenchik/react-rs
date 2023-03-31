@@ -66,6 +66,7 @@ const Form: FC<{ addCard: (cards: ICard) => void }> = (props) => {
           inputRef={register}
           LabelText="Date"
           type="date"
+          testID="input-date"
         />
         <Radio
           errorMessage={errors.format}
@@ -82,6 +83,7 @@ const Form: FC<{ addCard: (cards: ICard) => void }> = (props) => {
           inputRef={register}
           LabelText="Icon"
           type="file"
+          testID="input-file"
         />
         <InputCustom
           errorMessage={errors.agreement}

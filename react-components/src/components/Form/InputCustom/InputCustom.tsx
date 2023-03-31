@@ -5,7 +5,7 @@ import styles from './InputCustom.module.scss';
 import validator from '../../../utils/validation';
 
 const Text: FC<IInputTextProps> = (props) => {
-  const { LabelText, inputRef, errorMessage, type } = props;
+  const { LabelText, inputRef, errorMessage, type, testID } = props;
   const name = LabelText?.toLowerCase() as keyof IFormValues;
   const validatorProperty = name as keyof IValidator;
 
@@ -21,6 +21,7 @@ const Text: FC<IInputTextProps> = (props) => {
         id={name}
         name={name}
         type={type}
+        data-testid={testID}
       />
       {errorMessage ? (
         <span>{errorMessage.message}</span>

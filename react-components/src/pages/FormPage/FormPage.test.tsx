@@ -5,9 +5,9 @@ import FormPage from './FormPage';
 
 const fillForm = async () => {
   const title = screen.getByRole('textbox', {
-    name: 'Title: Description: Language: JavaScript',
+    name: 'Title:',
   });
-  const description = screen.getByRole('textbox', { name: '' });
+  const description = screen.getByRole('textbox', { name: 'Description:' });
   const format = screen.getAllByRole('radio');
   const date = screen.getByTestId('input-date');
   const icon = screen.getByTestId('input-file');
@@ -34,6 +34,7 @@ describe('FormPage', () => {
     await waitFor(() => fireEvent.submit(form));
 
     const card = screen.getByRole('listitem');
+    expect(screen.getByRole('img')).toBeInTheDocument();
     expect(card).toBeInTheDocument();
   });
 });

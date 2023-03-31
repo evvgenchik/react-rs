@@ -1,24 +1,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { FC } from 'react';
 import styles from './Radio.module.scss';
-import {
-  IInputRadioProps,
-  IFormValues,
-  IValidator,
-} from '../../../utils/types';
-import validator from '../../../utils/validation';
+import { IInputTextProps, IFormValues } from '../../../utils/types';
 
-const Radio: FC<IInputRadioProps> = (props) => {
+const Radio: FC<IInputTextProps> = (props) => {
   const { inputRef, errorMessage, LabelText } = props;
   const name = LabelText?.toLowerCase() as keyof IFormValues;
-  const validatorProperty = name as keyof IValidator;
   const inputs = ['PDF', 'TXT'];
 
   return (
     <>
       <label className={styles.radio}>
         {LabelText}:
-        {inputs.map((item, i) => (
+        {inputs.map((item) => (
           <label key={item}>
             {item}
             <input
@@ -26,11 +20,6 @@ const Radio: FC<IInputRadioProps> = (props) => {
               {...inputRef(name, {
                 required: `${LabelText} is require`,
               })}
-              // ref={(el) => {
-              //   if (el && inputRef && inputRef.current) {
-              //     inputRef.current[i] = el as HTMLInputElement;
-              //   }
-              // }}
               name="format"
               value={item}
               type="radio"

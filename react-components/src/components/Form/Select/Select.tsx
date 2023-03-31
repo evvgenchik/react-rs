@@ -1,13 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { FC } from 'react';
 import styles from './Select.module.scss';
-import { IInputTextProps, IFormValues, IValidator } from '../../../utils/types';
-import validator from '../../../utils/validation';
+import { IInputTextProps, IFormValues } from '../../../utils/types';
 
 const Select: FC<IInputTextProps> = (props) => {
-  const { LabelText, inputRef, errorMessage, type } = props;
+  const { LabelText, inputRef, errorMessage } = props;
   const name = LabelText?.toLowerCase() as keyof IFormValues;
-  const validatorProperty = name as keyof IValidator;
 
   return (
     <label className={styles.select} htmlFor={name}>

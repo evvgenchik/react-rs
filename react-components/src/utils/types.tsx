@@ -1,5 +1,6 @@
 import { UseFormRegister } from 'react-hook-form/dist/types';
 import { FieldError } from 'react-hook-form/dist/types/errors';
+import { useLocation } from 'react-router-dom';
 
 interface ICard {
   title: string;
@@ -10,11 +11,16 @@ interface ICard {
   icon: string;
 }
 
+interface WithRouterProps {
+  location: ReturnType<typeof useLocation>;
+}
+
 interface IInputTextProps {
   inputRef: UseFormRegister<IFormValues>;
   LabelText?: string;
   errorMessage?: FieldError;
   type?: string;
+  testID?: string;
 }
 
 interface IFormValues {
@@ -35,4 +41,10 @@ interface IValidator {
   icon: (value: FileList | string) => boolean | string;
 }
 
-export type { ICard, IInputTextProps, IFormValues, IValidator };
+export type {
+  ICard,
+  IInputTextProps,
+  IFormValues,
+  IValidator,
+  WithRouterProps,
+};

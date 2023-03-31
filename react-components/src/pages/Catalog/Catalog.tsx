@@ -1,5 +1,5 @@
 import books from '../../data/books';
-import Search from '../../components/Search/Searchh';
+import Search from '../../components/Search/Search';
 import CardList from '../../components/CardList/CardList';
 
 function Catalog() {
