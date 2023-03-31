@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { FC } from 'react';
 import styles from './Select.module.scss';
 import { IInputTextProps, IFormValues } from '../../../utils/types';

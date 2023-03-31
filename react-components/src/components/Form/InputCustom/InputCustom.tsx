@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { FC } from 'react';
 import { IInputTextProps, IFormValues, IValidator } from '../../../utils/types';
 import styles from './InputCustom.module.scss';
