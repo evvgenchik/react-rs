@@ -15,6 +15,14 @@ interface WithRouterProps {
   location: ReturnType<typeof useLocation>;
 }
 
+interface Iroutes {
+  [key: string]: string;
+}
+
+interface WithRouterProps {
+  location: ReturnType<typeof useLocation>;
+}
+
 interface IInputTextProps {
   inputRef: UseFormRegister<IFormValues>;
   LabelText?: string;
@@ -47,4 +55,5 @@ export type {
   IFormValues,
   IValidator,
   WithRouterProps,
+  Iroutes,
 };
