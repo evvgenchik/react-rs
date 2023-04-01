@@ -1,4 +1,4 @@
-import books from '../../data/books';
+import booksJson from '../../data/booksDB.json';
 import Search from '../../components/Search/Search';
 import CardList from '../../components/CardList/CardList';
 
@@ -6,7 +6,7 @@ function Catalog() {
   return (
     <>
       <Search />
-      <CardList cards={books} />
+      <CardList cards={booksJson.books} />
     </>
   );
 }
