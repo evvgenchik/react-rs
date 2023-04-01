@@ -3,3 +3,20 @@
   flex-direction: column;
   gap: 15rem;
 }
+
+.button {
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  border-radius: 20rem;
+  width: 200rem;
+  margin: 0 auto;
+  padding: 5rem;
+  color: #fff;
+  transition: background-color 0.5s linear;
+
+
+
+  &:hover {
+    background-color: rgba(127, 17, 224, 0.8);
+    cursor: pointer;
+  }
+}
