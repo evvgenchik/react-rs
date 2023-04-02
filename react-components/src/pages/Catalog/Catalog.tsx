@@ -8,16 +8,21 @@ function Catalog() {
   const [books, setBooks] = useState<ICard[]>();
 
   useEffect(() => {
+    const searchParams = localStorage.getItem('search');
+
     const fetchData = async () => {
-      const booksFromServer = await BooksServise.getAll();
-      setBooks(booksFromServer);
+      const booksFromServer = searchParams
+        ? await BooksServise.getSpecific(searchParams)
+        : await BooksServise.getAll();
+
+      if (booksFromServer) setBooks(booksFromServer);
     };
     fetchData();
   }, []);
 
   return (
     <>
-      <Search />
+      <Search setBooks={setBooks} />
       <CardList cards={books || []} />
     </>
   );
