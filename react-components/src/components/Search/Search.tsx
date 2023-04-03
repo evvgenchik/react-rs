@@ -3,22 +3,24 @@ import styles from './Search.module.scss';
 import useSaveLocalUnmount from '../../hooks/useSaveLocalUnmount';
 import BooksServise from '../../API/BooksServise';
 import { ICard } from '../../utils/types';
+import useFetching from '../../hooks/useFetch';
 
 const Search: FC<{ setBooks: (books: ICard[]) => void }> = ({ setBooks }) => {
   const initialInputValue = localStorage.getItem('search') || '';
   const [inputValue, setInputValue] = useState<string>(initialInputValue);
 
-  useSaveLocalUnmount(inputValue);
-
-  const fetchData = async (param: string) => {
-    const booksFromServer = await BooksServise.getSpecific(param);
+  const [fetchApi] = useFetching(async () => {
+    const booksFromServer = inputValue
+      ? await BooksServise.getSpecific(inputValue)
+      : await BooksServise.getAll();
     if (booksFromServer) setBooks(booksFromServer);
-  };
+  }) as [() => Promise<void>, boolean, string];
+
+  useSaveLocalUnmount(inputValue);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    if (!inputValue) return;
-    fetchData(inputValue);
+    fetchApi();
   };
 
   const handleChange = (event: ChangeEvent) => {

@@ -11,28 +11,15 @@ function Catalog() {
 
   const [fetchApi, loading, errorMessage] = useFetching(async () => {
     const searchParams = localStorage.getItem('search');
-
     const booksFromServer = searchParams
       ? await BooksServise.getSpecific(searchParams)
       : await BooksServise.getAll();
-
     if (booksFromServer) setBooks(booksFromServer);
   }) as [() => Promise<void>, boolean, string];
 
   useEffect(() => {
     fetchApi();
-
-    // const searchParams = localStorage.getItem('search');
-
-    // const fetchData = async () => {
-    //   const booksFromServer = searchParams
-    //     ? await BooksServise.getSpecific(searchParams)
-    //     : await BooksServise.getAll();
-
-    //   setIsLoading(false);
-    //   if (booksFromServer) setBooks(booksFromServer);
-    // };
-    // fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
