@@ -1,23 +1,23 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
+import { ICard } from '../utils/types';
 
-const useFetching = (callback) => {
-  const [books, setBooks] = useState<ICard[]>();
-  const [error, setError] = useState();
-  const [isLoading, setLoading] = useState(false);
+const useFetching = (callback: () => Promise<void>) => {
+  const [loading, setloading] = useState<boolean>();
+  const [errorMessage, setError] = useState<string>();
 
   const fetchApi = async () => {
     try {
-      setLoading(true);
+      setloading(true);
       await callback();
-      setData(data);
     } catch (error) {
-      setError(error.message);
+      const errorMess = error as Error;
+      setError(errorMess.message);
     } finally {
-      setLoading(false);
+      setloading(false);
     }
   };
 
-  return [fetchApi, isLoading, error];
+  return [fetchApi, loading, errorMessage];
 };
 
 export default useFetching;

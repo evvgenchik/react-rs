@@ -4,11 +4,14 @@ import styles from './CardList.module.scss';
 import { ICard } from '../../utils/types';
 
 function CardList({ cards }: { cards: ICard[] }) {
+  if (!cards || !cards.length) {
+    return <h2 className={styles.error}>Books not found</h2>;
+  }
+
   return (
     <ul className={styles.list}>
-      {cards.map((book) => (
-        <Product book={book} key={uuidv4()} />
-      ))}
+      {cards.length &&
+        cards.map((book) => <Product book={book} key={uuidv4()} />)}
     </ul>
   );
 }
