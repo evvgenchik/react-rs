@@ -9,6 +9,7 @@ interface ICard {
   format: string;
   language: string;
   icon: string;
+  isbn13: string;
 }
 
 interface WithRouterProps {
