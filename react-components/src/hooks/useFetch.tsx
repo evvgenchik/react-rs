@@ -8,6 +8,7 @@ const useFetching = (callback: () => Promise<void>) => {
   const fetchApi = async () => {
     try {
       setloading(true);
+      console.log(await callback());
       await callback();
     } catch (error) {
       const errorMess = error as Error;

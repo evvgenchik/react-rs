@@ -8,7 +8,6 @@ import useFetching from '../../hooks/useFetch';
 
 function Catalog() {
   const [books, setBooks] = useState<ICard[]>();
-  const [isLoading, setIsLoading] = useState(true);
 
   const [fetchApi, loading, errorMessage] = useFetching(async () => {
     const searchParams = localStorage.getItem('search');
@@ -22,7 +21,6 @@ function Catalog() {
 
   useEffect(() => {
     fetchApi();
-    console.log(errorMessage);
 
     // const searchParams = localStorage.getItem('search');
 
@@ -40,7 +38,11 @@ function Catalog() {
   return (
     <>
       <Search setBooks={setBooks} />
-      {errorMessage && <h2>Sorry, but something went wrong</h2>}
+      {errorMessage && (
+        <h2 style={{ textAlign: 'center' }}>
+          Sorry, but something went wrong. <br /> {errorMessage}
+        </h2>
+      )}
       {loading ? (
         <div
           style={{
