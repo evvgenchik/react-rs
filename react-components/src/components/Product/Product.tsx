@@ -9,11 +9,16 @@ function Product({ book }: { book: ICard }) {
       </div>
       <span>{book.date}</span>
       <h2>{book.title}</h2>
-      <h4>{book.description}</h4>
-      <p>Language: {book.language}</p>
-      <p>Format: {book.format}</p>
     </li>
   );
 }
 
 export default Product;
+
+// eslint-disable-next-line no-lone-blocks
+{
+  /* <p>Format: {book.format}</p>
+      <h4>{book.description}</h4> 
+  <p>Language: {book.language}</p>;
+  */
+}
