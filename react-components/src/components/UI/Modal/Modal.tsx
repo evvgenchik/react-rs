@@ -1,14 +1,27 @@
 import { FC } from 'react';
 import { ICard } from '../../../utils/types';
 import styles from './Modal.module.scss';
+import filterKeyEnter from '../../../utils/helpers';
 
 const Modal: FC<{
   setModalActive: React.Dispatch<React.SetStateAction<boolean>>;
   card: ICard;
 }> = ({ setModalActive, card }) => {
   return (
-    <div onClick={() => setModalActive(false)} className={styles.modal}>
-      <div onClick={(e) => e.stopPropagation()} className={styles.content}>
+    <div
+      role="link"
+      onKeyDown={filterKeyEnter(() => setModalActive(true))}
+      tabIndex={0}
+      onClick={() => setModalActive(false)}
+      className={styles.modal}
+    >
+      <div
+        role="link"
+        onKeyDown={filterKeyEnter(() => setModalActive(true))}
+        tabIndex={0}
+        onClick={(e) => e.stopPropagation()}
+        className={styles.content}
+      >
         <div className={styles.icon}>
           <img src={card.icon} alt="icon book" />
         </div>
