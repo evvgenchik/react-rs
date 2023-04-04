@@ -5,11 +5,9 @@ import BooksServise from '../../API/BooksServise';
 import { ICard } from '../../utils/types';
 import Loader from '../../components/UI/Loader/Loader';
 import useFetching from '../../hooks/useFetch';
-import Modal from '../../components/UI/Modal/Modal';
 
 function Catalog() {
   const [books, setBooks] = useState<ICard[]>();
-  const [modalActive, setModalActive] = useState<boolean>(false);
 
   const [fetchApi, loading, errorMessage] = useFetching(async () => {
     const searchParams = localStorage.getItem('search');
