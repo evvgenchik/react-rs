@@ -25,11 +25,6 @@ function Catalog() {
   return (
     <>
       <Search setBooks={setBooks} />
-      {errorMessage && (
-        <h2 style={{ textAlign: 'center' }}>
-          Sorry, but something went wrong. <br /> {errorMessage}
-        </h2>
-      )}
       {loading ? (
         <div
           style={{
@@ -41,7 +36,7 @@ function Catalog() {
           <Loader />
         </div>
       ) : (
-        <CardList cards={books || []} />
+        <CardList errorMessage={errorMessage} cards={books || []} />
       )}
     </>
   );
