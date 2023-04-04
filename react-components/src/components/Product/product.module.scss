@@ -25,3 +25,33 @@
     border-radius: 20rem;
   }
 }
+
+
+
+.modalIcon {
+  & img {
+    object-fit: cover;
+    width: 100%;
+    border-radius: 20rem;
+  }
+}
+
+.modalCross {
+  position: absolute;
+  top: 1%;
+  right: 2%;
+  font-weight: 700;
+  font-size: 20rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.modalData {
+  text-align: right;
+  display: block;
+}
