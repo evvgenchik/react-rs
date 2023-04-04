@@ -1,13 +1,14 @@
 import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { v4 as uuidv4 } from 'uuid';
 import styles from './form.module.scss';
 import InputCustom from './InputCustom/InputCustom';
 import Radio from './Radio/Radio';
 import Select from './Select/Select';
 import Button from './Button/Button';
-import { ICard, IFormValues } from '../../utils/types';
+import { IFormValues } from '../../utils/types';
 
-const Form: FC<{ addCard: (cards: ICard) => void }> = (props) => {
+const Form: FC<{ addCard: (cards: IFormValues) => void }> = (props) => {
   const {
     register,
     handleSubmit,
@@ -30,13 +31,15 @@ const Form: FC<{ addCard: (cards: ICard) => void }> = (props) => {
   const convertFile = (data: IFormValues) => {
     const inputValueBlob = new Blob([data.icon[0]]);
     const file = URL.createObjectURL(inputValueBlob);
-    Object.assign(data, { icon: file });
+    const isbn13 = uuidv4();
+    Object.assign(data, { icon: file, isbn13 });
     return data;
   };
 
   const onSubmit = handleSubmit((data) => {
     showSuccessMessage();
-    const newCard = convertFile(data) as ICard;
+    const newCard = convertFile(data);
+
     addCard(newCard);
     reset();
   });

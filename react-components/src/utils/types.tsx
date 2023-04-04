@@ -40,6 +40,7 @@ interface IFormValues {
   agreement: string;
   language: string;
   icon: string;
+  isbn13: string;
 }
 
 interface IValidator {

@@ -7,7 +7,7 @@ function CardList({
   errorMessage,
 }: {
   cards: ICard[];
-  errorMessage: string;
+  errorMessage?: string;
 }) {
   if (errorMessage) {
     return (
@@ -29,5 +29,9 @@ function CardList({
     </ul>
   );
 }
+
+CardList.defaultProps = {
+  errorMessage: '',
+};
 
 export default CardList;

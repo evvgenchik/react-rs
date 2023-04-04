@@ -14,7 +14,8 @@
     "test:ui": "vitest  --ui",
     "lint": "eslint . --ext .tsx --ext .ts",
     "lint-fix": "eslint . --ext .tsx --ext .ts --fix",
-    "server-dev": "json-server -w src/data/booksDB.json -p 3333"
+    "server-dev": "json-server -w src/data/booksDB.json -p 3333",
+    "format": "prettier --write"
   },
   "dependencies": {
     "json-server": "^0.17.3",
