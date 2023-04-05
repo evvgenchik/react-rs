@@ -9,9 +9,7 @@ const LocationTitle: FC<WithRouterProps> = ({ location }) => {
     '/form': 'FORM',
   };
 
-  return (
-    <h1 className={styles.title}>{routes[location.pathname] || 'NOT FOUND'}</h1>
-  );
+  return <h1 className={styles.title}>{routes[location.pathname] || 'NOT FOUND'}</h1>;
 };
 
 export default LocationTitle;

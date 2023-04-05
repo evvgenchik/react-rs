@@ -43,12 +43,7 @@ const Form: FC<{ addCard: (cards: ICard) => void }> = (props) => {
 
   return (
     <div className={styles.formContainer}>
-      <form
-        data-testid="formAddCard"
-        noValidate
-        onSubmit={onSubmit}
-        className={styles.form}
-      >
+      <form data-testid="formAddCard" noValidate onSubmit={onSubmit} className={styles.form}>
         <InputCustom
           errorMessage={errors.title}
           inputRef={register}
@@ -68,16 +63,8 @@ const Form: FC<{ addCard: (cards: ICard) => void }> = (props) => {
           type="date"
           testID="input-date"
         />
-        <Radio
-          errorMessage={errors.format}
-          LabelText="Format"
-          inputRef={register}
-        />
-        <Select
-          errorMessage={errors.language}
-          inputRef={register}
-          LabelText="Language"
-        />
+        <Radio errorMessage={errors.format} LabelText="Format" inputRef={register} />
+        <Select errorMessage={errors.language} inputRef={register} LabelText="Language" />
         <InputCustom
           errorMessage={errors.icon}
           inputRef={register}

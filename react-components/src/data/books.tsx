@@ -1,8 +1,7 @@
 const books = [
   {
     title: 'Snowflake: The Definitive Guide',
-    description:
-      'Architecting, Designing, and Deploying on the Snowflake Data Cloud',
+    description: 'Architecting, Designing, and Deploying on the Snowflake Data Cloud',
     isbn13: '9781098103828',
     price: '$58.90',
     icon: 'https://itbook.store/img/books/9781098103828.png',
@@ -134,8 +133,7 @@ const books = [
   },
   {
     title: 'Full Stack Quarkus and React',
-    description:
-      'Hands-on full stack web development with Java, React, and Kubernetes',
+    description: 'Hands-on full stack web development with Java, React, and Kubernetes',
     isbn13: '9781800562738',
     price: '$39.99',
     icon: 'https://itbook.store/img/books/9781800562738.png',
@@ -160,8 +158,7 @@ const books = [
   },
   {
     title: 'Architecting and Building High-Speed SoCs',
-    description:
-      'Design, develop, and debug complex FPGA-based systems-on-chip',
+    description: 'Design, develop, and debug complex FPGA-based systems-on-chip',
     isbn13: '9781801810999',
     price: '$32.99',
     icon: 'https://itbook.store/img/books/9781801810999.png',
@@ -235,8 +232,7 @@ const books = [
   },
   {
     title: 'Modern Frontend Development with Node.js',
-    description:
-      'A compendium for modern JavaScript web development within the Node.js ecosystem',
+    description: 'A compendium for modern JavaScript web development within the Node.js ecosystem',
     isbn13: '9781804618295',
     price: '$34.99',
     icon: 'https://itbook.store/img/books/9781804618295.png',

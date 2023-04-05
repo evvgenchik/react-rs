@@ -49,11 +49,4 @@ interface IValidator {
   icon: (value: FileList | string) => boolean | string;
 }
 
-export type {
-  ICard,
-  IInputTextProps,
-  IFormValues,
-  IValidator,
-  WithRouterProps,
-  Iroutes,
-};
+export type { ICard, IInputTextProps, IFormValues, IValidator, WithRouterProps, Iroutes };
