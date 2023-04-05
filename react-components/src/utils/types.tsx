@@ -51,6 +51,12 @@ interface IValidator {
   icon: (value: FileList | string) => boolean | string;
 }
 
+interface IModalBook {
+  book?: ICard;
+  active: boolean;
+  setModalActive: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 export type {
   ICard,
   IInputTextProps,
@@ -58,4 +64,5 @@ export type {
   IValidator,
   WithRouterProps,
   Iroutes,
+  IModalBook,
 };

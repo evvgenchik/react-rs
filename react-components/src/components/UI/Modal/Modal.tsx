@@ -5,7 +5,7 @@ import filterKeyEnter from '../../../utils/helpers';
 const Modal: FC<{
   setModalActive: React.Dispatch<React.SetStateAction<boolean>>;
   active: boolean;
-  children: JSX.Element[];
+  children?: JSX.Element[];
 }> = ({ setModalActive, active, children }) => {
   return (
     <div
@@ -24,7 +24,7 @@ const Modal: FC<{
           active ? `${styles.content} ${styles.active}` : styles.content
         }
       >
-        {children.map((el) => el)}
+        {children && children.map((el) => el)}
       </div>
     </div>
   );
