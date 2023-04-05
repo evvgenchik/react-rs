@@ -1,12 +1,30 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { rest } from 'msw';
+import userEvent from '@testing-library/user-event';
 import Catalog from './Catalog';
-import books from '../../data/booksDB.json';
 
-// describe('Catalog', () => {
-//   it('Renders Catalog component', () => {
-//     render(<Catalog />);
-//     const items = screen.getAllByRole('listitem', {});
-//     expect(items).toHaveLength(books.length);
-//   });
-// });
+describe('Catalog', () => {
+  it('Renders Catalog component', async () => {
+    render(<Catalog />);
+    await waitFor(() => {
+      const items = screen.getAllByRole('link', {});
+      expect(items.length).toBeGreaterThanOrEqual(1);
+    });
+  });
+  it('Renders Catalog component', async () => {
+    render(<Catalog />);
+    await waitFor(() => {
+      const items = screen.getAllByRole('lin', {});
+      expect(items.length).toBeGreaterThanOrEqual(1);
+    });
+  });
+  it('Search specific book', async () => {
+    const onSubmit = vi.fn();
+    render(<Catalog />);
+    const input: HTMLInputElement = screen.getByRole('textbox');
+    await userEvent.type(input, 'js');
+    await waitFor(() => fireEvent.submit(input));
+    expect(screen.getByText('Python')).not.toBeInTheDocument();
+  });
+});

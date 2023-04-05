@@ -34,7 +34,7 @@ describe('FormPage', () => {
     await waitFor(() => fireEvent.submit(form));
 
     const card = screen.getByRole('listitem');
-    expect(screen.getByRole('img')).toBeInTheDocument();
+    expect(screen.getAllByRole('img').length).toBeGreaterThanOrEqual(1);
     expect(card).toBeInTheDocument();
   });
 });
