@@ -16,11 +16,10 @@ const Search: FC<{ setBooks: (books: ICard[]) => void }> = ({ setBooks }) => {
     if (booksFromServer) setBooks(booksFromServer);
   }) as [() => Promise<void>, boolean, string];
 
-  useSaveLocalUnmount(inputValue);
-
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     fetchApi();
+    localStorage.setItem('search', inputValue);
   };
 
   const handleChange = (event: ChangeEvent) => {
