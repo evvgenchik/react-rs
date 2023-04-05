@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Product from '../Product/Product';
 import styles from './CardList.module.scss';
 import { ICard } from '../../utils/types';
-import ModalBook from '../ModalBook';
+import ModalBook from '../ModalBook/ModalBook';
 import BooksServise from '../../API/BooksServise';
 
 function CardList({
@@ -27,13 +27,8 @@ function CardList({
     return <h2 className={styles.error}>Books not found</h2>;
   }
 
-  const fetchData = async (isbn13: string) => {
-    const response = await BooksServise.getSpecific(isbn13);
-    return response;
-  };
-
   const cardClickHandler = async (isbn13: string) => {
-    const cardFromServer = await fetchData(isbn13);
+    const cardFromServer = await BooksServise.getSpecific(isbn13);
     if (cardFromServer[0]) {
       setCardForModal(cardFromServer[0]);
       setModalActive(true);

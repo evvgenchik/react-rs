@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { IModalBook } from '../utils/types';
-import Modal from './UI/Modal/Modal';
+import { IModalBook } from '../../utils/types';
+import Modal from '../UI/Modal/Modal';
 import styles from './ModalBook.module.scss';
 
 const ModalBook: FC<IModalBook> = ({ book, active, setModalActive }) => {
