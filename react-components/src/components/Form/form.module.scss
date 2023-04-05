@@ -1,0 +1,29 @@
+.formContainer {
+  width: 400rem;
+  margin: 0 auto;
+}
+
+.successMessage {
+  font-size: 24rem;
+  color: green;
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  font-size: 20rem;
+  width: 400rem;
+  margin: 0 auto;
+  text-align: center;
+  border: 1px solid lightgray;
+  padding: 10rem 15rem 20rem;
+  border-radius: 20rem;
+}
+
+.form span {
+  font-size: 12rem;
+  color: red
+}
