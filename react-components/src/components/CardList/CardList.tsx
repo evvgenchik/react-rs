@@ -17,10 +17,10 @@ function CardList({
 
   if (errorMessage) {
     return (
-      <h2 className={styles.error}>
-        {' '}
-        Sorry, but something went wrong. <br /> {errorMessage}
-      </h2>
+      <>
+        <h2 className={styles.error}>Sorry, but something went wrong.</h2>
+        <h2 className={styles.error}>{errorMessage}</h2>
+      </>
     );
   }
   if (!cards || !cards.length) {
