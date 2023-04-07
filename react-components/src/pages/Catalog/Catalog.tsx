@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Search from '../../components/Search/Search';
 import CardList from '../../components/CardList/CardList';
 import BooksServise from '../../API/BooksServise';
@@ -17,10 +17,13 @@ function Catalog() {
     if (booksFromServer) setBooks(booksFromServer);
   }) as [() => Promise<void>, boolean, string];
 
+  const fetchData = useCallback(() => {
+    return fetchApi;
+  }, [fetchApi]);
+
   useEffect(() => {
-    fetchApi();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    fetchData();
+  }, [fetchData]);
 
   return (
     <>

@@ -18,7 +18,7 @@ const exampleBook = [
 ];
 
 const server = setupServer(
-  rest.get('http://localhost:3333/books?q=js', (_, res, ctx) => {
+  rest.get('http://localhost:3333/books', (_, res, ctx) => {
     return res(ctx.status(200), ctx.json(exampleBook));
   })
 );

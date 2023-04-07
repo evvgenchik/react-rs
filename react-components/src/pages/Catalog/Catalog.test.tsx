@@ -21,7 +21,7 @@ describe('Catalog', () => {
   });
   it('Show error on invalid request', async () => {
     server.use(
-      rest.get('http://localhost:3333/books?q=js', (_, res, ctx) => {
+      rest.get('http://localhost:3333/books', (_, res, ctx) => {
         return res(ctx.status(404));
       })
     );
