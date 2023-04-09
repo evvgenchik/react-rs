@@ -21,9 +21,12 @@ describe('Catalog', () => {
   });
   it('Show error on invalid request', async () => {
     server.use(
-      rest.get('http://localhost:3333/books', (_, res, ctx) => {
-        return res(ctx.status(404));
-      })
+      rest.get(
+        'https://json-server-production-2471.up.railway.app/books',
+        (_, res, ctx) => {
+          return res(ctx.status(404));
+        }
+      )
     );
     render(<Catalog />);
     const input: HTMLInputElement = screen.getByRole('textbox');

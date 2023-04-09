@@ -18,9 +18,12 @@ const exampleBook = [
 ];
 
 const server = setupServer(
-  rest.get('http://localhost:3333/books', (_, res, ctx) => {
-    return res(ctx.status(200), ctx.json(exampleBook));
-  })
+  rest.get(
+    'https://json-server-production-2471.up.railway.app/books',
+    (_, res, ctx) => {
+      return res(ctx.status(200), ctx.json(exampleBook));
+    }
+  )
 );
 it('');
 beforeAll(() => server.listen());

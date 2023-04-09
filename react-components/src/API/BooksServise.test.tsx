@@ -9,9 +9,12 @@ describe('BooksServise', () => {
   });
   it('Api throw an error', async () => {
     server.use(
-      rest.get('http://localhost:3333/books', (_, res, ctx) => {
-        return res(ctx.status(404));
-      })
+      rest.get(
+        'https://json-server-production-2471.up.railway.app/books',
+        (_, res, ctx) => {
+          return res(ctx.status(404));
+        }
+      )
     );
     expect(BooksServise.getAll()).rejects.toThrow('Status code error: 404');
   });
