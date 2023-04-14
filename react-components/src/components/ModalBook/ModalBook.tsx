@@ -2,8 +2,12 @@ import { FC } from 'react';
 import { IModalBook } from '../../utils/types';
 import Modal from '../UI/Modal/Modal';
 import styles from './ModalBook.module.scss';
+import { useGetSpecificBookQuery } from '../../API/BooksServise';
 
-const ModalBook: FC<IModalBook> = ({ book, active, setModalActive }) => {
+const ModalBook: FC<IModalBook> = ({ id, active, setModalActive }) => {
+  const { data: bookArr } = useGetSpecificBookQuery(id);
+  const book = bookArr ? bookArr[0] : null;
+
   return (
     <div>
       {book ? (

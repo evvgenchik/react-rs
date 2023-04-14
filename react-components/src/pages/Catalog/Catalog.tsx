@@ -7,7 +7,6 @@ import { useAppSelector } from '../../hooks/redux';
 function Catalog() {
   const searchParams = useAppSelector((state) => state.search.value) || '';
   const { data: books, isLoading, isError } = useGetAllBooksQuery(searchParams);
-  console.log('catalog');
 
   return (
     <>
