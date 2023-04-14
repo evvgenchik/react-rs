@@ -1,19 +1,15 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import Form from '../../components/Form/Form';
 import CardList from '../../components/CardList/CardList';
-import { ICard, IFormValues } from '../../utils/types';
+import { useAppSelector } from '../../hooks/redux';
 
 const FormPage: FC = () => {
-  const [cardsArr, setCardsArr] = useState<ICard[]>([]);
-
-  const addCard = (card: IFormValues) => {
-    setCardsArr([card, ...cardsArr]);
-  };
+  const myBooks = useAppSelector((state) => state.myBooks.books);
 
   return (
     <div>
-      <Form addCard={addCard} />
-      {cardsArr.length > 0 && <CardList cards={cardsArr} />}
+      <Form />
+      {myBooks.length > 0 && <CardList cards={myBooks} />}
     </div>
   );
 };

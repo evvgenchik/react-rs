@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import searchSlice from './searchSlice';
 import { booksApi } from '../API/BooksServise';
+import myBooksSlice from './myBooksSlice';
 
 const store = configureStore({
   reducer: {
     search: searchSlice,
+    myBooks: myBooksSlice,
     [booksApi.reducerPath]: booksApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

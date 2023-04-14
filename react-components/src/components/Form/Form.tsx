@@ -7,8 +7,10 @@ import Radio from './Radio/Radio';
 import Select from './Select/Select';
 import Button from './Button/Button';
 import { IFormValues } from '../../utils/types';
+import { useAppDispatch } from '../../hooks/redux';
+import { addBook } from '../../store/myBooksSlice';
 
-const Form: FC<{ addCard: (cards: IFormValues) => void }> = (props) => {
+const Form: FC = () => {
   const {
     register,
     handleSubmit,
@@ -18,8 +20,8 @@ const Form: FC<{ addCard: (cards: IFormValues) => void }> = (props) => {
     mode: 'onSubmit',
   });
 
+  const dispatch = useAppDispatch();
   const [successMessage, setSuccessMessage] = useState('');
-  const { addCard } = props;
 
   const showSuccessMessage = () => {
     setSuccessMessage('Book was added successfully');
@@ -40,7 +42,7 @@ const Form: FC<{ addCard: (cards: IFormValues) => void }> = (props) => {
     showSuccessMessage();
     const newCard = convertFile(data);
 
-    addCard(newCard);
+    dispatch(addBook(newCard));
     reset();
   });
 
