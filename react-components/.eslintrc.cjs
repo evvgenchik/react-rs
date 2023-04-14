@@ -18,13 +18,12 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
     project: './tsconfig.json',
-    tsconfigRootDir: __dirname,
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
+    'no-param-reassign': [2, { props: false }],
     'linebreak-style': ['error', 'unix'],
     'react/react-in-jsx-scope': 0,
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 0,
     'react/function-component-definition': [

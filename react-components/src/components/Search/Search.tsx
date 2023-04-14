@@ -3,9 +3,12 @@ import styles from './Search.module.scss';
 import BooksServise from '../../API/BooksServise';
 import { ICard } from '../../utils/types';
 import useFetching from '../../hooks/useFetch';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { addSearchValue } from '../../store';
 
 const Search: FC<{ setBooks: (books: ICard[]) => void }> = ({ setBooks }) => {
-  const initialInputValue = localStorage.getItem('search') || '';
+  const initialInputValue = useAppSelector((state) => state.search.value) || '';
+  const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState<string>(initialInputValue);
 
   const [fetchApi] = useFetching(async () => {
@@ -18,7 +21,7 @@ const Search: FC<{ setBooks: (books: ICard[]) => void }> = ({ setBooks }) => {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     fetchApi();
-    localStorage.setItem('search', inputValue);
+    dispatch(addSearchValue(inputValue));
   };
 
   const handleChange = (event: ChangeEvent) => {

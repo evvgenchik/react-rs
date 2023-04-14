@@ -4,14 +4,15 @@ import CardList from '../../components/CardList/CardList';
 import BooksServise from '../../API/BooksServise';
 import { ICard } from '../../utils/types';
 import Loader from '../../components/UI/Loader/Loader';
+import { useAppSelector } from '../../hooks/redux';
 
 function Catalog() {
   const [books, setBooks] = useState<ICard[]>();
   const [loading, setloading] = useState<boolean>();
   const [errorMessage, setError] = useState<string>('');
+  const searchParams = useAppSelector((state) => state.search.value);
 
   const fethcData = async () => {
-    const searchParams = localStorage.getItem('search');
     const booksFromServer = searchParams
       ? await BooksServise.getSpecific(searchParams)
       : await BooksServise.getAll();
