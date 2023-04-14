@@ -21,6 +21,15 @@ export const booksApi = createApi({
         },
       }),
     }),
+    //   addBook: builder.mutation<ICard, ICard>({
+    //     query: (book) => ({
+    //       url: `/books`,
+    //       params: {
+    //         method: 'POST',
+    //         body: book,
+    //       },
+    //     }),
+    //   }),
   }),
 });
 

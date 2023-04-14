@@ -8,7 +8,7 @@ const initialState: SearchState = {
   value: '',
 };
 
-const counterSlice = createSlice({
+const searchSlice = createSlice({
   name: 'search',
   initialState,
   reducers: {
@@ -18,6 +18,6 @@ const counterSlice = createSlice({
   },
 });
 
-export const { addSearchValue } = counterSlice.actions;
+export const { addSearchValue } = searchSlice.actions;
 
-export default counterSlice.reducer;
+export default searchSlice.reducer;
