@@ -1,4 +1,18 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ICard } from '../utils/types';
+
+// Define a service using a base URL and expected endpoints
+export const booksApi = createApi({
+  reducerPath: 'booksApi',
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3333' }),
+  endpoints: (builder) => ({
+    getAllBooks: builder.query<ICard[], void>({
+      query: () => `/books`,
+    }),
+  }),
+});
+
+export const { useGetAllBooksQuery } = booksApi;
 
 export default class BooksServise {
   static url = 'http://localhost:3333/books';

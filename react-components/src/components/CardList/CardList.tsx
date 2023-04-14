@@ -5,23 +5,12 @@ import { ICard } from '../../utils/types';
 import ModalBook from '../ModalBook/ModalBook';
 import BooksServise from '../../API/BooksServise';
 
-function CardList({
-  cards,
-  errorMessage,
-}: {
-  cards: ICard[];
-  errorMessage?: string;
-}) {
+function CardList({ cards, isError }: { cards: ICard[]; isError?: boolean }) {
   const [cardForModal, setCardForModal] = useState<ICard>();
   const [modalActive, setModalActive] = useState<boolean>(false);
 
-  if (errorMessage) {
-    return (
-      <>
-        <h2 className={styles.error}>Sorry, but something went wrong.</h2>
-        <h2 className={styles.error}>{errorMessage}</h2>
-      </>
-    );
+  if (isError) {
+    return <h2 className={styles.error}>Sorry, but something went wrong.</h2>;
   }
   if (!cards || !cards.length) {
     return <h2 className={styles.error}>Books not found</h2>;
