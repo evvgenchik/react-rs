@@ -1,9 +1,6 @@
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import styles from './Search.module.scss';
-import {
-  useGetAllBooksQuery,
-  useLazyGetSpecificBookQuery,
-} from '../../API/BooksServise';
+import { useGetAllBooksQuery } from '../../API/BooksServise';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { addSearchValue } from '../../store';
 
@@ -13,11 +10,8 @@ const Search: FC = () => {
   const [inputValue, setInputValue] = useState<string>(initialInputValue);
   useGetAllBooksQuery(inputValue);
 
-  const [searchSpecificBook] = useLazyGetSpecificBookQuery();
-
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    await searchSpecificBook(inputValue);
     dispatch(addSearchValue(inputValue));
   };
 

@@ -3,11 +3,13 @@ import Product from '../Product/Product';
 import styles from './CardList.module.scss';
 import { ICard } from '../../utils/types';
 import ModalBook from '../ModalBook/ModalBook';
-import BooksServise from '../../API/BooksServise';
+import { useGetSpecificBookQuery } from '../../API/BooksServise';
 
 function CardList({ cards, isError }: { cards: ICard[]; isError?: boolean }) {
-  const [cardForModal, setCardForModal] = useState<ICard>();
+  const [idCurrentCard, setIdCurrentCard] = useState('');
   const [modalActive, setModalActive] = useState<boolean>(false);
+  const { data: cardForModal } = useGetSpecificBookQuery(idCurrentCard);
+  console.log('cardlist');
 
   if (isError) {
     return <h2 className={styles.error}>Sorry, but something went wrong.</h2>;
@@ -17,11 +19,8 @@ function CardList({ cards, isError }: { cards: ICard[]; isError?: boolean }) {
   }
 
   const cardClickHandler = async (isbn13: string) => {
-    const cardFromServer = await BooksServise.getSpecific(isbn13);
-    if (cardFromServer[0]) {
-      setCardForModal(cardFromServer[0]);
-      setModalActive(true);
-    }
+    setIdCurrentCard(isbn13);
+    setModalActive(true);
   };
 
   return (
@@ -35,11 +34,13 @@ function CardList({ cards, isError }: { cards: ICard[]; isError?: boolean }) {
           />
         ))}
       </ul>
-      <ModalBook
-        book={cardForModal}
-        active={modalActive}
-        setModalActive={setModalActive}
-      />
+      {cardForModal && (
+        <ModalBook
+          book={cardForModal[0]}
+          active={modalActive}
+          setModalActive={setModalActive}
+        />
+      )}
     </>
   );
 }
