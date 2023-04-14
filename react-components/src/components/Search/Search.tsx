@@ -1,26 +1,23 @@
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import styles from './Search.module.scss';
-import BooksServise from '../../API/BooksServise';
-import { ICard } from '../../utils/types';
-import useFetching from '../../hooks/useFetch';
+import {
+  useGetAllBooksQuery,
+  useLazyGetSpecificBookQuery,
+} from '../../API/BooksServise';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { addSearchValue } from '../../store';
 
-const Search: FC<{ setBooks: (books: ICard[]) => void }> = ({ setBooks }) => {
+const Search: FC = () => {
   const initialInputValue = useAppSelector((state) => state.search.value) || '';
   const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState<string>(initialInputValue);
+  useGetAllBooksQuery(inputValue);
 
-  const [fetchApi] = useFetching(async () => {
-    const booksFromServer = inputValue
-      ? await BooksServise.getSpecific(inputValue)
-      : await BooksServise.getAll();
-    if (booksFromServer) setBooks(booksFromServer);
-  }) as [() => Promise<void>, boolean, string];
+  const [searchSpecificBook] = useLazyGetSpecificBookQuery();
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    fetchApi();
+    await searchSpecificBook(inputValue);
     dispatch(addSearchValue(inputValue));
   };
 

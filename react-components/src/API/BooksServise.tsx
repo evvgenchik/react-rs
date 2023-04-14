@@ -6,13 +6,26 @@ export const booksApi = createApi({
   reducerPath: 'booksApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3333' }),
   endpoints: (builder) => ({
-    getAllBooks: builder.query<ICard[], void>({
-      query: () => `/books`,
+    getAllBooks: builder.query<ICard[], string | undefined>({
+      query: (name?) => ({
+        url: `/books`,
+        params: {
+          q: name,
+        },
+      }),
+    }),
+    getSpecificBook: builder.query<ICard[], string>({
+      query: (name) => ({
+        url: `/books`,
+        params: {
+          q: name,
+        },
+      }),
     }),
   }),
 });
 
-export const { useGetAllBooksQuery } = booksApi;
+export const { useGetAllBooksQuery, useLazyGetSpecificBookQuery } = booksApi;
 
 export default class BooksServise {
   static url = 'http://localhost:3333/books';
