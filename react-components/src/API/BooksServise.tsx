@@ -33,4 +33,8 @@ export const booksApi = createApi({
   }),
 });
 
-export const { useGetAllBooksQuery, useGetSpecificBookQuery } = booksApi;
+export const {
+  useGetAllBooksQuery,
+  useGetSpecificBookQuery,
+  useLazyGetSpecificBookQuery,
+} = booksApi;

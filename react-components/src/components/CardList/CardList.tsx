@@ -3,10 +3,12 @@ import Product from '../Product/Product';
 import styles from './CardList.module.scss';
 import { ICard } from '../../utils/types';
 import ModalBook from '../ModalBook/ModalBook';
+import { useLazyGetSpecificBookQuery } from '../../API/BooksServise';
 
 function CardList({ cards, isError }: { cards: ICard[]; isError?: boolean }) {
-  const [idCurrentCard, setIdCurrentCard] = useState('');
+  const [currentBook, setIdCurrentBook] = useState<ICard>();
   const [modalActive, setModalActive] = useState<boolean>(false);
+  const [getScpecificBook] = useLazyGetSpecificBookQuery();
 
   if (isError) {
     return <h2 className={styles.error}>Sorry, but something went wrong.</h2>;
@@ -16,8 +18,12 @@ function CardList({ cards, isError }: { cards: ICard[]; isError?: boolean }) {
   }
 
   const cardClickHandler = async (isbn13: string) => {
-    setIdCurrentCard(isbn13);
-    setModalActive(true);
+    const { data: book } = await getScpecificBook(isbn13);
+
+    if (book && book[0]) {
+      setIdCurrentBook(book[0]);
+      setModalActive(true);
+    }
   };
 
   return (
@@ -32,7 +38,7 @@ function CardList({ cards, isError }: { cards: ICard[]; isError?: boolean }) {
         ))}
       </ul>
       <ModalBook
-        id={idCurrentCard}
+        book={currentBook}
         active={modalActive}
         setModalActive={setModalActive}
       />

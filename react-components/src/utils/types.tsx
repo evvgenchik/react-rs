@@ -52,7 +52,7 @@ interface IValidator {
 }
 
 interface IModalBook {
-  id: string;
+  book?: ICard;
   active: boolean;
   setModalActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
