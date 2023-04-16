@@ -6,7 +6,7 @@ import ModalBook from '../ModalBook/ModalBook';
 import { useLazyGetSpecificBookQuery } from '../../API/BooksServise';
 
 function CardList({ cards, isError }: { cards: ICard[]; isError?: boolean }) {
-  const [currentBook, setIdCurrentBook] = useState<ICard>();
+  const [currentBook, setCurrentBook] = useState<ICard>();
   const [modalActive, setModalActive] = useState<boolean>(false);
   const [getScpecificBook] = useLazyGetSpecificBookQuery();
 
@@ -21,7 +21,7 @@ function CardList({ cards, isError }: { cards: ICard[]; isError?: boolean }) {
     const { data: book } = await getScpecificBook(isbn13);
 
     if (book && book[0]) {
-      setIdCurrentBook(book[0]);
+      setCurrentBook(book[0]);
       setModalActive(true);
     }
   };

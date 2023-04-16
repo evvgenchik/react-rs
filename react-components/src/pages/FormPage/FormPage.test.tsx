@@ -1,7 +1,9 @@
-import { describe, it, expect } from 'vitest';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
+import * as reactRedux from 'react-redux';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import FormPage from './FormPage';
+import renderWithProviders from '../../utils/utils-for-tests';
 
 const fillForm = async () => {
   const title = screen.getByRole('textbox', {
@@ -27,8 +29,15 @@ const fillForm = async () => {
 };
 
 describe('FormPage', () => {
+  const useSelectorMock = vi.spyOn(reactRedux, 'useSelector');
+  // vi.mock('react-redux', async () => ({
+  //   ...(await vi.importActual('react-redux')),
+  //   useSelector: vi.fn([]),
+  // }));
+
   it('Check card add', async () => {
-    render(<FormPage />);
+    useSelectorMock.mockReturnValue([]);
+    renderWithProviders(<FormPage />);
     const form = screen.getByTestId('formAddCard');
     await fillForm();
     await waitFor(() => fireEvent.submit(form));
