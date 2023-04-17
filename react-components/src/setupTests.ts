@@ -5,8 +5,8 @@ import { server } from './testServer.test';
 window.URL.createObjectURL = () => {
   return '';
 };
-beforeAll(() => server.listen());
 
+beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
