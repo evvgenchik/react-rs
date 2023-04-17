@@ -1,5 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
-import * as reactRedux from 'react-redux';
+import { describe, it, expect } from 'vitest';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import FormPage from './FormPage';
@@ -29,19 +28,11 @@ const fillForm = async () => {
 };
 
 describe('FormPage', () => {
-  const useSelectorMock = vi.spyOn(reactRedux, 'useSelector');
-  // vi.mock('react-redux', async () => ({
-  //   ...(await vi.importActual('react-redux')),
-  //   useSelector: vi.fn([]),
-  // }));
-
   it('Check card add', async () => {
-    useSelectorMock.mockReturnValue([]);
     renderWithProviders(<FormPage />);
     const form = screen.getByTestId('formAddCard');
     await fillForm();
     await waitFor(() => fireEvent.submit(form));
-
     const card = screen.getByRole('listitem');
     expect(screen.getAllByRole('img').length).toBeGreaterThanOrEqual(1);
     expect(card).toBeInTheDocument();

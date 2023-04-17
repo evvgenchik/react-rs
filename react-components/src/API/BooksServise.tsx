@@ -3,7 +3,9 @@ import { ICard } from '../utils/types';
 
 export const booksApi = createApi({
   reducerPath: 'booksApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3333' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://ethereal-name-production.up.railway.app',
+  }),
   endpoints: (builder) => ({
     getAllBooks: builder.query<ICard[], string | undefined>({
       query: (name?) => ({
@@ -21,15 +23,6 @@ export const booksApi = createApi({
         },
       }),
     }),
-    //   addBook: builder.mutation<ICard, ICard>({
-    //     query: (book) => ({
-    //       url: `/books`,
-    //       params: {
-    //         method: 'POST',
-    //         body: book,
-    //       },
-    //     }),
-    //   }),
   }),
 });
 

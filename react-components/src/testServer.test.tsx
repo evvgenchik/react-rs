@@ -19,15 +19,12 @@ const exampleBook = [
 
 const server = setupServer(
   rest.get(
-    'https://json-server-production-2471.up.railway.app/books',
+    'https://ethereal-name-production.up.railway.app/books',
     (_, res, ctx) => {
       return res(ctx.status(200), ctx.json(exampleBook));
     }
   )
 );
 it('');
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
 
 export { server, rest };

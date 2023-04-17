@@ -1,19 +1,26 @@
-import { configureStore } from '@reduxjs/toolkit';
-import searchSlice from './searchSlice';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import type { PreloadedState } from '@reduxjs/toolkit';
+import searchReducer from './searchSlice';
 import { booksApi } from '../API/BooksServise';
-import myBooksSlice from './myBooksSlice';
+import myBooksReducer from './myBooksSlice';
 
-const store = configureStore({
-  reducer: {
-    search: searchSlice,
-    myBooks: myBooksSlice,
-    [booksApi.reducerPath]: booksApi.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(booksApi.middleware),
+const rootReducer = combineReducers({
+  search: searchReducer,
+  myBooks: myBooksReducer,
+  [booksApi.reducerPath]: booksApi.reducer,
 });
 
-export default store;
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(booksApi.middleware),
+  });
+};
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export default setupStore;
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore['dispatch'];

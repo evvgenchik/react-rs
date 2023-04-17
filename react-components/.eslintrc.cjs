@@ -23,7 +23,6 @@ module.exports = {
   rules: {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'no-param-reassign': [2, { props: false }],
-    'linebreak-style': ['error', 'unix'],
     'react/react-in-jsx-scope': 0,
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 0,

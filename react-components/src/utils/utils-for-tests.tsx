@@ -1,15 +1,29 @@
-import { PropsWithChildren, ReactElement } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { render } from '@testing-library/react';
+import type { RenderOptions } from '@testing-library/react';
+import type { PreloadedState } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import store from '../store/store';
 
-const renderWithProviders = (ui: ReactElement) => {
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  function Wrapper({ children }: PropsWithChildren<{}>) {
+import { setupStore } from '../store';
+import type { AppStore, RootState } from '../store';
+
+interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
+  preloadedState?: PreloadedState<RootState>;
+  store?: AppStore;
+}
+
+function renderWithProviders(
+  ui: React.ReactElement,
+  {
+    preloadedState = {},
+    store = setupStore(preloadedState),
+    ...renderOptions
+  }: ExtendedRenderOptions = {}
+) {
+  function Wrapper({ children }: PropsWithChildren<object>): JSX.Element {
     return <Provider store={store}>{children}</Provider>;
   }
-
-  return { store, ...render(ui, { wrapper: Wrapper }) };
-};
+  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
+}
 
 export default renderWithProviders;
