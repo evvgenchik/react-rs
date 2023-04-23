@@ -30,7 +30,6 @@ app.use('*', async (req, res) => {
 
     res.write(parts[0]);
     const stream = render.render(req.url, {
-      bootstrapScripts: ['/src/entry-client.tsx'],
       onShellReady() {
         stream.pipe(res);
       },
