@@ -14,34 +14,37 @@ const vite = await createServer({
 });
 app.use(vite.middlewares);
 
+app.get('/favicon.ico', (req, res) => res.status(204));
+
 app.use('*', async (req, res) => {
   try {
-    const url = req.originalUrl.replace(base, '');
+    //const url = req.originalUrl.replace(base, '');
 
-    // const html = fs
-    //   .readFileSync(path.resolve(__dirname, './dist/client/index.html'))
-    //   .toString();
-
-    // eslint-disable-next-line prefer-const
     let template = await fs.readFile('./index.html', 'utf-8');
-    const parts = template.split('<!--app-head-->');
-    // template = await vite.transformIndexHtml(url, template);
+    //const parts = template.split('<!--app-head-->');
     const render = await vite.ssrLoadModule('/src/entry-server.tsx');
 
-    res.write(parts[0]);
-    const stream = render.render(req.url, {
+    // res.write(parts[0]);
+    let didError = false;
+    const stream = render.render(req.originalUrl, {
       onShellReady() {
+        res.statusCode = didError ? 500 : 200;
+        res.setHeader('Content-type', 'text/html');
         stream.pipe(res);
       },
       onShellError() {
-        // do error handling
+        res.statusCode = 500;
+        res.send(
+          '<!doctype html><p>Loading...</p><script src="clientrender.js"></script>'
+        );
       },
-      onAllReady() {
-        // last thing to write
-        res.write(parts[1]);
-        res.end();
-      },
+      // onAllReady() {
+      //   // last thing to write
+      //   res.write(parts[1]);
+      //   res.end();
+      // },
       onError(err: Error) {
+        didError = true;
         console.error(err);
       },
     });
