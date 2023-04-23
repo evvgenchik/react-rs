@@ -11,17 +11,24 @@
 //   return { html };
 // }
 
+import { Provider } from 'react-redux';
 import { renderToPipeableStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
+import setupStore from './store/store';
 import App from './App';
 
 // eslint-disable-next-line import/prefer-default-export
 export function render(url, opts) {
+  const store = setupStore();
   const stream = renderToPipeableStream(
     <StaticRouter location={url}>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </StaticRouter>,
     opts
   );
-  return stream;
+  const preloadedState = store.getState();
+
+  return { stream, preloadedState };
 }
