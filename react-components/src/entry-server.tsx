@@ -8,8 +8,8 @@ import App from './App';
 const store = setupStore();
 
 export const storeTrigger = async () => {
+  store.dispatch(booksApi.endpoints.getAllBooks.initiate(''));
   await Promise.all(store.dispatch(booksApi.util.getRunningQueriesThunk()));
-  console.log('storeTrigger');
 };
 
 // eslint-disable-next-line import/prefer-default-export
@@ -23,7 +23,6 @@ export async function render(url, opts) {
     opts
   );
   const preloadedState = store.getState();
-  console.log(preloadedState);
 
   return { stream, preloadedState };
 }
