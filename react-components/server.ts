@@ -1,41 +1,11 @@
 import fs from 'node:fs/promises';
 import express from 'express';
+import { useGetAllBooksQuery } from './src/API/BooksServise';
 
 const port = process.env.PORT || 5173;
 const base = process.env.BASE || '/';
 
 const app = express();
-
-function renderFullPage(html: any, preloadedState: any) {
-  return `
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <link rel="icon" type="image/svg+xml" href="./src/assets/logo.webp" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>ITBooks</title>
-    </head>
-    <body>
-      <script type="module">
-        import RefreshRuntime from 'http://localhost:5173/@react-refresh';
-        RefreshRuntime.injectIntoGlobalHook(window);
-        window.$RefreshReg$ = () => {};
-        window.$RefreshSig$ = () => (type) => type;
-        window.__vite_plugin_react_preamble_installed__ = true;
-      </script>
-      <script>
-      // WARNING: See the following for security issues around embedding JSON in HTML:
-      // https://redux.js.org/usage/server-rendering#security-considerations
-      window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
-        /</g,
-        '\\u003c'
-      )}
-    </script>
-    </body>
-  </html>
-    `;
-}
 
 const { createServer } = await import('vite');
 const vite = await createServer({
@@ -57,7 +27,7 @@ app.use('*', async (req, res) => {
 
     res.write(parts[0]);
     let didError = false;
-    const { stream, preloadedState } = render.render(req.originalUrl, {
+    const { stream, preloadedState } = await render.render(req.originalUrl, {
       bootstrapModules: ['./src/entry-client.tsx'],
       onShellReady() {
         res.statusCode = didError ? 500 : 200;
