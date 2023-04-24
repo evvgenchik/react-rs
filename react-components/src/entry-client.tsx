@@ -5,6 +5,7 @@ import setupStore from './store/store';
 import App from './App';
 
 const store = setupStore(window.__PRELOADED_STATE__);
+delete window.__PRELOADED_STATE__;
 
 hydrateRoot(
   document.getElementById('root')!,

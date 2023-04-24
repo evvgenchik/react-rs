@@ -1,6 +1,5 @@
 import fs from 'node:fs/promises';
 import express from 'express';
-import { useGetAllBooksQuery } from './src/API/BooksServise';
 
 const port = process.env.PORT || 5173;
 const base = process.env.BASE || '/';
@@ -19,19 +18,19 @@ app.get('/favicon.ico', (req, res) => res.status(204));
 
 app.use('*', async (req, res) => {
   try {
-    //const url = req.originalUrl.replace(base, '');
-
     let template = await fs.readFile('./index.html', 'utf-8');
     const render = await vite.ssrLoadModule('/src/entry-server.tsx');
-    const parts = template.split('<!--app-head-->');
+    const parts = template.split('<!--app-body-->');
+    await render.storeTrigger();
 
     res.write(parts[0]);
     let didError = false;
     const { stream, preloadedState } = await render.render(req.originalUrl, {
       bootstrapModules: ['./src/entry-client.tsx'],
       onShellReady() {
+        console.log('render');
+
         res.statusCode = didError ? 500 : 200;
-        // res.setHeader('Content-type', 'text/html');
         stream.pipe(res);
       },
       onShellError(err: Error) {
@@ -43,8 +42,6 @@ app.use('*', async (req, res) => {
       },
       onAllReady() {
         res.write(`<script>
-          // WARNING: See the following for security issues around embedding JSON in HTML:
-          // https://redux.js.org/usage/server-rendering#security-considerations
           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
             /</g,
             '\\u003c'
@@ -58,12 +55,6 @@ app.use('*', async (req, res) => {
         console.error(err);
       },
     });
-
-    // const html = template
-    //   .replace(`<!--app-head-->`, rendered.head ?? '')
-    //   .replace(`<!--app-html-->`, rendered.html ?? '');
-
-    // res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
   } catch (e: unknown) {
     const error = e as Error;
     vite?.ssrFixStacktrace(error);

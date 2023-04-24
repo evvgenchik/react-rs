@@ -7,12 +7,13 @@ import App from './App';
 
 const store = setupStore();
 
-const data = Promise.all(
-  store.dispatch(booksApi.util.getRunningQueriesThunk())
-).then((values) => console.log(values));
+export const storeTrigger = async () => {
+  await Promise.all(store.dispatch(booksApi.util.getRunningQueriesThunk()));
+  console.log('storeTrigger');
+};
 
 // eslint-disable-next-line import/prefer-default-export
-export function render(url, opts) {
+export async function render(url, opts) {
   const stream = renderToPipeableStream(
     <StaticRouter location={url}>
       <Provider store={store}>
@@ -22,6 +23,7 @@ export function render(url, opts) {
     opts
   );
   const preloadedState = store.getState();
+  console.log(preloadedState);
 
   return { stream, preloadedState };
 }
