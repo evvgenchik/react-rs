@@ -10,6 +10,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:cypress/recommended',
     'plugin:prettier/recommended',
   ],
   overrides: [],
@@ -19,7 +20,7 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json',
   },
-  plugins: ['react', '@typescript-eslint', 'prettier'],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'cypress'],
   rules: {
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],

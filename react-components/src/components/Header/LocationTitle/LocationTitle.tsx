@@ -10,7 +10,9 @@ const LocationTitle: FC<WithRouterProps> = ({ location }) => {
   };
 
   return (
-    <h1 className={styles.title}>{routes[location.pathname] || 'NOT FOUND'}</h1>
+    <h1 data-test="header-location" className={styles.title}>
+      {routes[location.pathname] || 'NOT FOUND'}
+    </h1>
   );
 };
 

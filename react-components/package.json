@@ -6,18 +6,20 @@
   "scripts": {
     "server": "node src/serverDate.js",
     "start": "concurrently \"npm run server\" \"npm run dev\"",
-    "dev": "nodemon server.ts",
+    "dev": "ts-node server.ts",
     "build:client": "vite build --ssrManifest --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
     "build": "npm run build:client && npm run build:server",
-    "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "test:ui": "vitest  --ui",
     "lint": "eslint . --ext .tsx --ext .ts",
     "lint-fix": "eslint . --ext .tsx --ext .ts --fix",
     "server-dev": "json-server -w src/data/booksDB.json -p 3333",
-    "format": "prettier --write"
+    "format": "prettier --write",
+    "cypress:open": "cypress open",
+    "cy:open-e2e": "cypress open --e2e --browser chrome",
+    "cy:e2e": "start-server-and-test start http://localhost:5173 cy:open-e2e",
+    "ci": "start-server-and-test start http://localhost:3000 cypress:open"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -35,6 +37,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.10.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
@@ -52,10 +55,12 @@
     "@vitest/ui": "^0.29.3",
     "concurrently": "^8.0.1",
     "cross-env": "^7.0.3",
+    "cypress": "^12.10.0",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-cypress": "^2.13.2",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.2.1",
@@ -68,10 +73,12 @@
     "prettier": "^2.8.4",
     "prop-types": "^15.8.1",
     "sass": "^1.59.3",
+    "start-server-and-test": "^2.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.3",
     "uuid": "^9.0.0",
     "vite": "^4.2.0",
+    "vite-plugin-istanbul": "^4.0.1",
     "vitest": "^0.29.3",
     "whatwg-fetch": "^3.6.2"
   }

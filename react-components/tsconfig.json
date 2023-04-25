@@ -19,6 +19,6 @@
   "ts-node": {
     "esm": true
   },
-  "include": ["src", "server.ts"],
+  "include": ["src", "server.ts", "cypress"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -3,6 +3,7 @@
 
 import react from '@vitejs/plugin-react';
 import { configDefaults, defineConfig } from 'vitest/config';
+import istanbul from 'vite-plugin-istanbul';
 
 export default defineConfig({
   build: {
@@ -13,7 +14,13 @@ export default defineConfig({
       input: '/path/to/main.js',
     },
   },
-  plugins: [react()],
+  plugins: [
+    react(),
+    istanbul({
+      cypress: true,
+      requireEnv: false,
+    }),
+  ],
   test: {
     globals: true,
     environment: 'jsdom',

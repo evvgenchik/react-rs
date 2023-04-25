@@ -15,14 +15,20 @@ const Search: FC = () => {
     dispatch(addSearchValue(inputValue));
   };
 
-  const handleChange = (event: ChangeEvent) => {
+  const handleChange: (event: ChangeEvent) => void = (event: ChangeEvent) => {
     const { value } = event.target as HTMLInputElement;
     setInputValue(value);
   };
 
   return (
-    <form aria-label="form" className={styles.form} onSubmit={handleSubmit}>
+    <form
+      data-test="cardlist-form"
+      aria-label="form"
+      className={styles.form}
+      onSubmit={handleSubmit}
+    >
       <input
+        data-test="cardlist-search"
         type="text"
         value={inputValue}
         onChange={handleChange}
