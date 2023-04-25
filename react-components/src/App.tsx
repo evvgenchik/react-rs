@@ -5,6 +5,7 @@ import NotFound from './pages/NotFound/NotFound';
 import MainLayout from './layouts/MainLayout';
 import FormPage from './pages/FormPage/FormPage';
 import './App.css';
+import './index.css';
 
 function App() {
   return (
