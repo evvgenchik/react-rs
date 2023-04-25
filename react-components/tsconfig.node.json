@@ -9,5 +9,5 @@
   "ts-node": {
     "esm": true
   },
-  "include": ["vite.config.ts", "src/entry-server.tsx", "src/vite-env.d.ts"]
+  "include": ["vite.config.ts", "src/vite-env.d.ts"]
 }

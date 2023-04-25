@@ -1,11 +1,8 @@
 import fs from 'node:fs/promises';
 import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 const port = process.env.PORT || 5173;
 const base = process.env.BASE || '/';
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 
@@ -21,7 +18,7 @@ app
   .get('/favicon.ico', (req, res) => res.status(204))
   .use('*', async (req, res) => {
     try {
-      let template = await fs.readFile('./index.html', 'utf-8');
+      const template = await fs.readFile('./index.html', 'utf-8');
       const render = await vite.ssrLoadModule('/src/entry-server.tsx');
       const parts = template.split('<!--app-body-->');
       await render.storeTrigger();
@@ -34,8 +31,8 @@ app
           res.statusCode = didError ? 500 : 200;
           stream.pipe(res);
         },
-        onShellError(err: Error) {
-          console.log(err);
+        onShellError(err: unknown) {
+          console.error(err);
           res.statusCode = 500;
           res.send(
             '<!doctype html><p>Loading...</p><script src="clientrender.js"></script>'
@@ -43,14 +40,15 @@ app
         },
         onAllReady() {
           res.write(`<script>
-            window.__PRELOADED_STATE__ = ${JSON.stringify(
-              preloadedState
-            ).replace(/</g, '\\u003c')}
+            window.PRELOADED_STATE = ${JSON.stringify(preloadedState).replace(
+              /</g,
+              '\\u003c'
+            )}
           </script>`);
           res.write(parts[1]);
           res.end();
         },
-        onError(err: Error) {
+        onError(err: unknown) {
           didError = true;
           console.error(err);
         },
@@ -58,11 +56,12 @@ app
     } catch (e: unknown) {
       const error = e as Error;
       vite?.ssrFixStacktrace(error);
-      console.log(error.stack);
+      console.error(error.stack);
       res.status(500).end(error.stack);
     }
   });
 
 app.listen(port, () => {
+  // eslint-disable-next-line no-console
   console.log(`Server started at http://localhost:${port}`);
 });

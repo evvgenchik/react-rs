@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import About from './pages/About/About';
 import Catalog from './pages/Catalog/Catalog';
 import NotFound from './pages/NotFound/NotFound';
@@ -8,14 +7,6 @@ import FormPage from './pages/FormPage/FormPage';
 import './App.css';
 
 function App() {
-  // const [isRenderComplete, setIsRenderComplete] = useState(false);
-  // useEffect(() => {
-  //   setIsRenderComplete(true);
-  // }, []);
-  // if (!isRenderComplete) {
-  //   return null;
-  // }
-
   return (
     <div className="App">
       <Routes>
@@ -31,13 +22,3 @@ function App() {
 }
 
 export default App;
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <About />
-//     </div>
-//   );
-// }
-
-// export default App;
