@@ -7,7 +7,6 @@ import {
 
 import { ICard } from '../utils/types';
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
 const createApi = buildCreateApi(
   coreModule(),
   reactHooksModule({ unstable__sideEffectsInRender: true })

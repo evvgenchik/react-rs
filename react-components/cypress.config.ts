@@ -2,7 +2,7 @@ import { defineConfig } from 'cypress';
 import coverage from '@cypress/code-coverage/task';
 
 export default defineConfig({
-  videoCompression: false,
+  video: false,
   screenshotOnRunFailure: false,
   env: {
     codeCoverage: {
