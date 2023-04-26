@@ -35,7 +35,7 @@ app
           console.error(err);
           res.statusCode = 500;
           res.send(
-            '<!doctype html><p>Loading...</p><script src="clientrender.js"></script>'
+            '<!doctype html><p>Sorry, but something went wrong</p><script src="clientrender.js"></script>'
           );
         },
         onAllReady() {

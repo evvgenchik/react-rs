@@ -36,8 +36,9 @@ export default defineConfig({
       exclude: [
         ...configDefaults.exclude,
         'src/main.tsx',
-        'src/utils/types.tsx',
         'node_modules',
+        'src/utils**',
+        'src/hooks**',
       ],
     },
   },

@@ -4,21 +4,20 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "server": "node src/serverDate.js",
     "start": "concurrently \"npm run server\" \"npm run dev\"",
     "dev": "ts-node server.ts",
     "build:client": "vite build --ssrManifest --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
     "build": "npm run build:client && npm run build:server",
+    "server": "node src/serverDate.js",
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "lint": "eslint . --ext .tsx --ext .ts",
     "lint-fix": "eslint . --ext .tsx --ext .ts --fix",
     "server-dev": "json-server -w src/data/booksDB.json -p 3333",
     "format": "prettier --write",
-    "cypress:open": "cypress open",
     "cy:open-e2e": "cypress open --e2e --browser chrome",
-    "cy:e2e": "start-server-and-test start http://localhost:5173 cy:open-e2e && npx nyc report --reporter=text-summary",
+    "cy:e2e": "start-server-and-test start http://localhost:5173 cy:run-unit && npx nyc report --reporter=text-summary",
     "cy:run-unit": "cypress run --e2e"
   },
   "dependencies": {

@@ -20,7 +20,7 @@ const Text: FC<IInputTextProps> = (props) => {
         id={name}
         name={name}
         type={type}
-        data-test={testID}
+        data-testid={testID}
       />
       {errorMessage ? (
         <span>{errorMessage.message}</span>

@@ -5,3 +5,7 @@ declare namespace Cypress {
     getByData(dataTestAttribute: string): Chainable<JQuery<HTMLElement>>;
   }
 }
+
+Cypress.Screenshot.defaults({
+  screenshotOnRunFailure: false,
+});

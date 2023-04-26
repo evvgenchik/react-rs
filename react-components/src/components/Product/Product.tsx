@@ -16,12 +16,12 @@ function Product({
       onKeyDown={filterKeyEnter(() => cardClickHandler(book.isbn13))}
       tabIndex={0}
     >
-      <li data-test="cardlist-item" className={styles.item}>
+      <li data-testid="cardlist-item" className={styles.item}>
         <div className={styles.icon}>
           <img src={book.icon} alt="icon book" />
         </div>
         <span>{book.date}</span>
-        <h2 data-test="item-titile">{book.title}</h2>
+        <h2 data-testid="item-titile">{book.title}</h2>
       </li>
     </div>
   );

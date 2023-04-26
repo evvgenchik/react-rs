@@ -8,7 +8,12 @@ describe('catalog page', () => {
   it('amount of elements', () => {
     cy.getByData('cardlist-item').should('have.length.at.least', 20);
   });
-  it('search book', () => {
+  it('search input', () => {
+    cy.getByData('cardlist-search')
+      .invoke('attr', 'placeholder')
+      .should('contain', 'Search books');
+  });
+  it('search specific book', () => {
     cy.getByData('cardlist-search').type('js');
     cy.getByData('cardlist-search').should('have.value', 'js');
     cy.getByData('cardlist-form').submit();

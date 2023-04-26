@@ -22,13 +22,13 @@ const Search: FC = () => {
 
   return (
     <form
-      data-test="cardlist-form"
+      data-testid="cardlist-form"
       aria-label="form"
       className={styles.form}
       onSubmit={handleSubmit}
     >
       <input
-        data-test="cardlist-search"
+        data-testid="cardlist-search"
         type="text"
         value={inputValue}
         onChange={handleChange}
