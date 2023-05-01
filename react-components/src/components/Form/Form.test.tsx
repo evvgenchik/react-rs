@@ -39,7 +39,6 @@ describe('Form', () => {
     useDispatchMock.mockReturnValue(onSubmit());
     const form = screen.getByTestId('formAddCard');
     await fillForm();
-
     await waitFor(() => fireEvent.submit(form));
     expect(onSubmit).toHaveBeenCalled();
   });

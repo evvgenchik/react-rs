@@ -57,6 +57,20 @@ interface IModalBook {
   setModalActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+interface IRenderToPipeableStream {
+  bootstrapModules: string[];
+  onShellReady(): void;
+  onShellError(err: unknown): void;
+  onAllReady(): void;
+  onError(err: unknown): void;
+}
+
+declare global {
+  interface Window {
+    PRELOADED_STATE: never;
+  }
+}
+
 export type {
   ICard,
   IInputTextProps,
@@ -65,4 +79,5 @@ export type {
   WithRouterProps,
   Iroutes,
   IModalBook,
+  IRenderToPipeableStream,
 };

@@ -1,10 +1,21 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {
+  fetchBaseQuery,
+  buildCreateApi,
+  coreModule,
+  reactHooksModule,
+} from '@reduxjs/toolkit/query/react';
+
 import { ICard } from '../utils/types';
+
+const createApi = buildCreateApi(
+  coreModule(),
+  reactHooksModule({ unstable__sideEffectsInRender: true })
+);
 
 export const booksApi = createApi({
   reducerPath: 'booksApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://ethereal-name-production.up.railway.app',
+    baseUrl: 'http://localhost:3333',
   }),
   endpoints: (builder) => ({
     getAllBooks: builder.query<ICard[], string | undefined>({

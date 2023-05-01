@@ -11,7 +11,7 @@ function CardList({ cards, isError }: { cards: ICard[]; isError?: boolean }) {
   const [getScpecificBook] = useLazyGetSpecificBookQuery();
 
   if (isError) {
-    return <h2 className={styles.error}>Sorry, but something went wrong.</h2>;
+    return <h2 className={styles.error}>Sorry, but something went wrong</h2>;
   }
   if (!cards || !cards.length) {
     return <h2 className={styles.error}>Books not found</h2>;

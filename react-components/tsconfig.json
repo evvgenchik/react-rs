@@ -16,6 +16,9 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [".eslintrc.cjs", "src", "vite.config.ts"],
+  "ts-node": {
+    "esm": true
+  },
+  "include": ["src", "server.ts", "cypress"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

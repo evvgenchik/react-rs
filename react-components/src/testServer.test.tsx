@@ -18,12 +18,9 @@ const exampleBook = [
 ];
 
 const server = setupServer(
-  rest.get(
-    'https://ethereal-name-production.up.railway.app/books',
-    (_, res, ctx) => {
-      return res(ctx.status(200), ctx.json(exampleBook));
-    }
-  )
+  rest.get('http://localhost:3333/books', (_, res, ctx) => {
+    return res(ctx.status(200), ctx.json(exampleBook));
+  })
 );
 it('');
 

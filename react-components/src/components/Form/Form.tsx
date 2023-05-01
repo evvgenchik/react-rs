@@ -59,12 +59,14 @@ const Form: FC = () => {
           inputRef={register}
           LabelText="Title"
           type="text"
+          testID="input-title"
         />
         <InputCustom
           errorMessage={errors.description}
           inputRef={register}
           LabelText="Description"
           type="text"
+          testID="input-description"
         />
         <InputCustom
           errorMessage={errors.date}

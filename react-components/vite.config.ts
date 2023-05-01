@@ -3,9 +3,24 @@
 
 import react from '@vitejs/plugin-react';
 import { configDefaults, defineConfig } from 'vitest/config';
+import istanbul from 'vite-plugin-istanbul';
 
 export default defineConfig({
-  plugins: [react()],
+  build: {
+    // generate manifest.json in outDir
+    manifest: true,
+    rollupOptions: {
+      // overwrite default .html entry
+      input: '/path/to/main.js',
+    },
+  },
+  plugins: [
+    react(),
+    istanbul({
+      cypress: true,
+      requireEnv: false,
+    }),
+  ],
   test: {
     globals: true,
     environment: 'jsdom',
@@ -21,8 +36,9 @@ export default defineConfig({
       exclude: [
         ...configDefaults.exclude,
         'src/main.tsx',
-        'src/utils/types.tsx',
         'node_modules',
+        'src/utils**',
+        'src/hooks**',
       ],
     },
   },

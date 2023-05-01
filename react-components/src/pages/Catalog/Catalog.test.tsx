@@ -22,19 +22,16 @@ describe('Catalog', () => {
   });
   it('Show error on invalid request', async () => {
     server.use(
-      rest.get(
-        'https://ethereal-name-production.up.railway.app/books',
-        (_, res, ctx) => {
-          return res(ctx.status(404));
-        }
-      )
+      rest.get('http://localhost:3333/books', (_, res, ctx) => {
+        return res(ctx.status(404));
+      })
     );
     renderWithProviders(<Catalog />);
     const input: HTMLInputElement = screen.getByRole('textbox');
     await userEvent.type(input, 'js');
     await waitFor(() => fireEvent.submit(input));
     expect(
-      screen.getByText('Sorry, but something went wrong.')
+      screen.getByText('Sorry, but something went wrong')
     ).toBeInTheDocument();
   });
 });
